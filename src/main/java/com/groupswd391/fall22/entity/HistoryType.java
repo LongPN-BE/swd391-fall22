@@ -1,6 +1,13 @@
 package com.groupswd391.fall22.entity;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tbl_major")
 public class HistoryType {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String id;
     String name;
     String description;

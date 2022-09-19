@@ -1,6 +1,17 @@
 package com.groupswd391.fall22.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+
+@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "tbl_major")
 public class Wallet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String id;
     String user_ID;
     String name;

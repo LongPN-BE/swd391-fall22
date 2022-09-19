@@ -1,6 +1,14 @@
 package com.groupswd391.fall22.entity;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tbl_major")
 public class OrderDetail {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String id;
     String order_ID;
     String projectItem_ID;

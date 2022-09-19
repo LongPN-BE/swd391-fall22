@@ -1,8 +1,16 @@
 package com.groupswd391.fall22.entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+
+
+@Entity
+@Table(name = "tbl_major")
 public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String id;
     String application_ID;
     Timestamp time;

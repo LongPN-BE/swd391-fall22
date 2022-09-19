@@ -1,6 +1,14 @@
 package com.groupswd391.fall22.entity;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tbl_major")
 public class Project {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String id;
     String projectType_ID;
     String name;

@@ -1,7 +1,14 @@
 package com.groupswd391.fall22.entity;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+
+@Entity
+@Table(name = "tbl_major")
 public class Application {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String ID;
     String projectItem_ID;
     String user_ID;
