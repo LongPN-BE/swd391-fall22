@@ -2,9 +2,9 @@ package com.groupswd391.fall22.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import lombok.Data;
 
-
-
+@Data
 @Entity
 @Table(name = "tbl_user")
 public class User {
@@ -13,12 +13,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "role_ID", referencedColumnName = "id", nullable = false)
+    @ManyToOne( targetEntity = Role.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_ID", referencedColumnName = "id")
     private Role role;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "major_ID", referencedColumnName = "id", nullable = false)
+    @ManyToOne( targetEntity = Major.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "major_ID", referencedColumnName = "id")
     private Major major;
 
     private String firstname;
@@ -33,10 +33,8 @@ public class User {
     public User() {
     }
 
-    public User(String id, Role role, Major major, String firstname, String lastname, String email, String phone, Date dob, Integer legit, boolean status, String img) {
+    public User(String id, String firstname, String lastname, String email, String phone, Date dob, Integer legit, boolean status, String img) {
         this.id = id;
-        this.role = role;
-        this.major = major;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
