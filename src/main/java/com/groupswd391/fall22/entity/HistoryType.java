@@ -4,7 +4,7 @@ package com.groupswd391.fall22.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_historyType")
+@Table(name = "tbl_historytype")
 public class HistoryType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

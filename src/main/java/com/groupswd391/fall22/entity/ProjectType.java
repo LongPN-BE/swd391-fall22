@@ -4,15 +4,15 @@ package com.groupswd391.fall22.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_projectType")
+@Table(name = "tbl_projecttype")
 public class ProjectType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "major_ID", nullable = false)
+    @ManyToOne( targetEntity = Major.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "major_ID", referencedColumnName = "id")
     private Major major;
 
     private String name;
@@ -21,9 +21,8 @@ public class ProjectType {
     public ProjectType() {
     }
 
-    public ProjectType(String id, Major major, String name, String description) {
+    public ProjectType(String id, String name, String description) {
         this.id = id;
-        this.major = major;
         this.name = name;
         this.description = description;
     }

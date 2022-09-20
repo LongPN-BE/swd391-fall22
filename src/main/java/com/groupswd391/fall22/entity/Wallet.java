@@ -7,15 +7,15 @@ import javax.persistence.*;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "wallet")
+@Table(name = "tbl_wallet")
 public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_ID", nullable = false)
+    @ManyToOne( targetEntity = User.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_ID", referencedColumnName = "id")
     private User user;
     private String name;
     private double amount;
@@ -24,9 +24,8 @@ public class Wallet {
     public Wallet() {
     }
 
-    public Wallet(String id, User user, String name, double amount, boolean status) {
+    public Wallet(String id, String name, double amount, boolean status) {
         this.id = id;
-        this.user = user;
         this.name = name;
         this.amount = amount;
         this.status = status;
