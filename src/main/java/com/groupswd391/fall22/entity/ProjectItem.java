@@ -4,28 +4,30 @@ package com.groupswd391.fall22.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_major")
+@Table(name = "tbl_projectItem")
 public class ProjectItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
-    String project_ID;
-    double min_price;
-    double max_price;
-    String requirement;
-    Integer neededNum;
-    Integer soldNum;
-    Integer appliedNum;
+    private String id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "project_ID", nullable = false)
+    private Project project;
+
+    private double min_price;
+    private double max_price;
+    private String requirement;
+    private Integer neededNum;
+    private Integer soldNum;
+    private Integer appliedNum;
 
     public ProjectItem() {
     }
 
-    public ProjectItem(String id, String project_ID, double min_price,
-                       double max_price, String requirement, Integer neededNum,
-                       Integer soldNum, Integer appliedNum) {
+    public ProjectItem(String id, Project project, double min_price, double max_price, String requirement, Integer neededNum, Integer soldNum, Integer appliedNum) {
         this.id = id;
-        this.project_ID = project_ID;
+        this.project = project;
         this.min_price = min_price;
         this.max_price = max_price;
         this.requirement = requirement;
@@ -42,12 +44,12 @@ public class ProjectItem {
         this.id = id;
     }
 
-    public String getProject_ID() {
-        return project_ID;
+    public Project getProject() {
+        return project;
     }
 
-    public void setProject_ID(String project_ID) {
-        this.project_ID = project_ID;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public double getMin_price() {

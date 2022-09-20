@@ -7,23 +7,26 @@ import javax.persistence.*;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "tbl_major")
+@Table(name = "wallet")
 public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
-    String user_ID;
-    String name;
-    double amount;
-    boolean status;
+    private String id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_ID", nullable = false)
+    private User user;
+    private String name;
+    private double amount;
+    private boolean status;
 
     public Wallet() {
     }
 
-    public Wallet(String id, String user_ID, String name, double amount, boolean status) {
+    public Wallet(String id, User user, String name, double amount, boolean status) {
         this.id = id;
-        this.user_ID = user_ID;
+        this.user = user;
         this.name = name;
         this.amount = amount;
         this.status = status;
@@ -37,12 +40,12 @@ public class Wallet {
         this.id = id;
     }
 
-    public String getUser_ID() {
-        return user_ID;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_ID(String user_ID) {
-        this.user_ID = user_ID;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getName() {

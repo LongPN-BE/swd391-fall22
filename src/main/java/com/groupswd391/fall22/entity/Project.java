@@ -4,26 +4,34 @@ package com.groupswd391.fall22.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_major")
+@Table(name = "tbl_project")
 public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
-    String projectType_ID;
-    String name;
-    String description;
-    String user_ID;
+    private String id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "projectType_ID", nullable = false)
+    private ProjectType projectType;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_ID", nullable = false)
+    private User user;
+
+    private String name;
+    private String description;
+
 
     public Project() {
     }
 
-    public Project(String id, String projectType_ID, String name, String description, String user_ID) {
+    public Project(String id, ProjectType projectType, User user, String name, String description) {
         this.id = id;
-        this.projectType_ID = projectType_ID;
+        this.projectType = projectType;
+        this.user = user;
         this.name = name;
         this.description = description;
-        this.user_ID = user_ID;
     }
 
     public String getId() {
@@ -34,12 +42,20 @@ public class Project {
         this.id = id;
     }
 
-    public String getProjectType_ID() {
-        return projectType_ID;
+    public ProjectType getProjectType() {
+        return projectType;
     }
 
-    public void setProjectType_ID(String projectType_ID) {
-        this.projectType_ID = projectType_ID;
+    public void setProjectType(ProjectType projectType) {
+        this.projectType = projectType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getName() {
@@ -56,13 +72,5 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getUser_ID() {
-        return user_ID;
-    }
-
-    public void setUser_ID(String user_ID) {
-        this.user_ID = user_ID;
     }
 }

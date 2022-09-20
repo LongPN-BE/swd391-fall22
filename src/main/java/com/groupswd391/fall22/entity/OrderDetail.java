@@ -4,22 +4,28 @@ package com.groupswd391.fall22.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_major")
+@Table(name = "tbl_orderDetail")
 public class OrderDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
-    String order_ID;
-    String projectItem_ID;
+    private String id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "order_ID", nullable = false)
+    private Order order;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "projectItem_ID", nullable = false)
+    private ProjectItem projectItem;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(String id, String order_ID, String projectItem_ID) {
+    public OrderDetail(String id, Order order, ProjectItem projectItem) {
         this.id = id;
-        this.order_ID = order_ID;
-        this.projectItem_ID = projectItem_ID;
+        this.order = order;
+        this.projectItem = projectItem;
     }
 
     public String getId() {
@@ -30,19 +36,19 @@ public class OrderDetail {
         this.id = id;
     }
 
-    public String getOrder_ID() {
-        return order_ID;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrder_ID(String order_ID) {
-        this.order_ID = order_ID;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public String getProjectItem_ID() {
-        return projectItem_ID;
+    public ProjectItem getProjectItem() {
+        return projectItem;
     }
 
-    public void setProjectItem_ID(String projectItem_ID) {
-        this.projectItem_ID = projectItem_ID;
+    public void setProjectItem(ProjectItem projectItem) {
+        this.projectItem = projectItem;
     }
 }

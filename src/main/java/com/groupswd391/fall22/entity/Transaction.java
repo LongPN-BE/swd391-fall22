@@ -4,22 +4,28 @@ package com.groupswd391.fall22.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_major")
+@Table(name = "tbl_transaction")
 public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
-    String order_ID;
-    String wallet_ID;
+    private String id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "order_ID", nullable = false)
+    private Order order;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "wallet_ID", nullable = false)
+    private Wallet wallet;
 
     public Transaction() {
     }
 
-    public Transaction(String id, String order_ID, String wallet_ID) {
+    public Transaction(String id, Order order, Wallet wallet) {
         this.id = id;
-        this.order_ID = order_ID;
-        this.wallet_ID = wallet_ID;
+        this.order = order;
+        this.wallet = wallet;
     }
 
     public String getId() {
@@ -30,19 +36,19 @@ public class Transaction {
         this.id = id;
     }
 
-    public String getOrder_ID() {
-        return order_ID;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrder_ID(String order_ID) {
-        this.order_ID = order_ID;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public String getWallet_ID() {
-        return wallet_ID;
+    public Wallet getWallet() {
+        return wallet;
     }
 
-    public void setWallet_ID(String wallet_ID) {
-        this.wallet_ID = wallet_ID;
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 }

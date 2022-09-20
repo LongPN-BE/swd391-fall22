@@ -6,33 +6,37 @@ import java.sql.Date;
 
 
 @Entity
-@Table(name = "tbl_major")
+@Table(name = "tbl_user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
-    String role_ID;
-    String major_ID;
-    String firstname;
-    String lastname;
-    String email;
-    String phone;
-    Date dob;
-    Integer legit;
-    boolean status;
-    String img;
+    private String id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "role_ID", referencedColumnName = "id", nullable = false)
+    private Role role;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "major_ID", referencedColumnName = "id", nullable = false)
+    private Major major;
+
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String phone;
+    private Date dob;
+    private Integer legit;
+    private boolean status;
+    private String img;
 
     public User() {
     }
 
-    public User(String id, String role_ID, String major_ID,
-                String firstname, String lastname,
-                String email, String phone, Date dob,
-                Integer legit, boolean status, String img) {
+    public User(String id, Role role, Major major, String firstname, String lastname, String email, String phone, Date dob, Integer legit, boolean status, String img) {
         this.id = id;
-        this.role_ID = role_ID;
-        this.major_ID = major_ID;
+        this.role = role;
+        this.major = major;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -51,20 +55,20 @@ public class User {
         this.id = id;
     }
 
-    public String getRole_ID() {
-        return role_ID;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRole_ID(String role_ID) {
-        this.role_ID = role_ID;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-    public String getMajor_ID() {
-        return major_ID;
+    public Major getMajor() {
+        return major;
     }
 
-    public void setMajor_ID(String major_ID) {
-        this.major_ID = major_ID;
+    public void setMajor(Major major) {
+        this.major = major;
     }
 
     public String getFirstname() {

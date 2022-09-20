@@ -4,22 +4,29 @@ package com.groupswd391.fall22.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_major")
+@Table(name = "tbl_history")
 public class History {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
-    String historyType_ID;
-    String user_ID;
-    String description;
+    private String id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "historyType_ID", nullable = false)
+    private HistoryType historyType;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_ID", nullable = false)
+    private User user;
+
+    private String description;
 
     public History() {
     }
 
-    public History(String id, String historyType_ID, String user_ID, String description) {
+    public History(String id, HistoryType historyType, User user, String description) {
         this.id = id;
-        this.historyType_ID = historyType_ID;
-        this.user_ID = user_ID;
+        this.historyType = historyType;
+        this.user = user;
         this.description = description;
     }
 
@@ -31,20 +38,20 @@ public class History {
         this.id = id;
     }
 
-    public String getHistoryType_ID() {
-        return historyType_ID;
+    public HistoryType getHistoryType() {
+        return historyType;
     }
 
-    public void setHistoryType_ID(String historyType_ID) {
-        this.historyType_ID = historyType_ID;
+    public void setHistoryType(HistoryType historyType) {
+        this.historyType = historyType;
     }
 
-    public String getUser_ID() {
-        return user_ID;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_ID(String user_ID) {
-        this.user_ID = user_ID;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getDescription() {

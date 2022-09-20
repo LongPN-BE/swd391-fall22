@@ -8,9 +8,9 @@ public class Major {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
-    String name;
-    String description;
+    private String id;
+    private String name;
+    private String description;
 
     public Major() {
     }

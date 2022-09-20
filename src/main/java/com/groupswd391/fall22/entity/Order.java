@@ -6,23 +6,27 @@ import java.sql.Timestamp;
 
 
 @Entity
-@Table(name = "tbl_major")
+@Table(name = "tbl_order")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
-    String application_ID;
-    Timestamp time;
-    double amount;
-    boolean status;
+    private String id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "application_ID", nullable = false)
+    private Application application;
+
+    private Timestamp time;
+    private double amount;
+    private boolean status;
 
     public Order() {
     }
 
-    public Order(String id, String application_ID, Timestamp time, double amount, boolean status) {
+    public Order(String id, Application application, Timestamp time, double amount, boolean status) {
         this.id = id;
-        this.application_ID = application_ID;
+        this.application = application;
         this.time = time;
         this.amount = amount;
         this.status = status;
@@ -36,12 +40,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getApplication_ID() {
-        return application_ID;
+    public Application getApplication() {
+        return application;
     }
 
-    public void setApplication_ID(String application_ID) {
-        this.application_ID = application_ID;
+    public void setApplication(Application application) {
+        this.application = application;
     }
 
     public Timestamp getTime() {

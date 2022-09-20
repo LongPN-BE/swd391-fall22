@@ -1,28 +1,36 @@
 package com.groupswd391.fall22.entity;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 
 @Entity
-@Table(name = "tbl_major")
+@Table(name = "tbl_application")
 public class Application {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String ID;
-    String projectItem_ID;
-    String user_ID;
-    String requirement;
-    double price;
-    Timestamp time;
+    private String ID;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "projectItem_ID", nullable = false)
+    private ProjectItem projectItem;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_ID", nullable = false)
+    private User user;
+
+    private String requirement;
+    private double price;
+    private Timestamp time;
 
     public Application() {
     }
 
-    public Application(String ID, String projectItem_ID, String user_ID, String requirement, double price, Timestamp time) {
+    public Application(String ID, ProjectItem projectItem, User user, String requirement, double price, Timestamp time) {
         this.ID = ID;
-        this.projectItem_ID = projectItem_ID;
-        this.user_ID = user_ID;
+        this.projectItem = projectItem;
+        this.user = user;
         this.requirement = requirement;
         this.price = price;
         this.time = time;
@@ -36,20 +44,20 @@ public class Application {
         this.ID = ID;
     }
 
-    public String getProjectItem_ID() {
-        return projectItem_ID;
+    public ProjectItem getProjectItem() {
+        return projectItem;
     }
 
-    public void setProjectItem_ID(String projectItem_ID) {
-        this.projectItem_ID = projectItem_ID;
+    public void setProjectItem(ProjectItem projectItem) {
+        this.projectItem = projectItem;
     }
 
-    public String getUser_ID() {
-        return user_ID;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_ID(String user_ID) {
-        this.user_ID = user_ID;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getRequirement() {
