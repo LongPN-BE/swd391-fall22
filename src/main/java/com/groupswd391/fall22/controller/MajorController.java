@@ -1,9 +1,7 @@
 package com.groupswd391.fall22.controller;
 
-
-
-import com.groupswd391.fall22.entity.ProjectType;
-import com.groupswd391.fall22.repository.ProjectTypeRepository;
+import com.groupswd391.fall22.entity.Major;
+import com.groupswd391.fall22.repository.MajorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,17 +14,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class ProjectTypeAPI {
+public class MajorController {
 
     @Autowired
-    private ProjectTypeRepository projectTypeRepository;
+    private MajorRepository majorRepository;
 
-    @RequestMapping(value = "/projectType/", method = RequestMethod.GET)
-    public ResponseEntity<List<ProjectType>> listAllMajor(){
-        List<ProjectType> listProjectTypes = projectTypeRepository.findAll();
-        if(listProjectTypes.isEmpty()) {
+    @RequestMapping(value = "/major/", method = RequestMethod.GET)
+    public ResponseEntity<List<Major>> listAllMajor(){
+        List<Major> listMajor = majorRepository.findAll();
+        if(listMajor.isEmpty()) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<ProjectType>>(listProjectTypes, HttpStatus.OK);
+        return new ResponseEntity<List<Major>>(listMajor, HttpStatus.OK);
     }
+
 }

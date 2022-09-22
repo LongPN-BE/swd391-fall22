@@ -1,7 +1,8 @@
 package com.groupswd391.fall22.controller;
 
-import com.groupswd391.fall22.entity.Major;
-import com.groupswd391.fall22.repository.MajorRepository;
+
+import com.groupswd391.fall22.entity.HistoryType;
+import com.groupswd391.fall22.repository.HistoryTypeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,18 +15,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class MajorAPI {
+public class HistoryTypeController {
 
     @Autowired
-    private MajorRepository majorRepository;
+    private HistoryTypeRepository historyTypeRepository;
 
-    @RequestMapping(value = "/major/", method = RequestMethod.GET)
-    public ResponseEntity<List<Major>> listAllMajor(){
-        List<Major> listMajor = majorRepository.findAll();
-        if(listMajor.isEmpty()) {
+    @RequestMapping(value = "/historyType/", method = RequestMethod.GET)
+    public ResponseEntity<List<HistoryType>> listAllMajor(){
+        List<HistoryType> listHistoryType = historyTypeRepository.findAll();
+        if(listHistoryType.isEmpty()) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<Major>>(listMajor, HttpStatus.OK);
+        return new ResponseEntity<List<HistoryType>>(listHistoryType, HttpStatus.OK);
     }
 
 }

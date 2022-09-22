@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class UserAPI {
+public class UserController {
 
     @Autowired
     private UserRepository userRepository;
@@ -26,6 +26,15 @@ public class UserAPI {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<User>>(listUser, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public User findUserByID(@PathVariable("id") String id) {
+        User user = userRepository.getUserById(id);
+        if(user == null) {
+            ResponseEntity.notFound().build();
+        }
+        return user;
     }
 
 }

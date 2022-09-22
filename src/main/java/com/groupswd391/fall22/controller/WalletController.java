@@ -1,9 +1,7 @@
 package com.groupswd391.fall22.controller;
 
-
-import com.groupswd391.fall22.entity.HistoryType;
-import com.groupswd391.fall22.repository.HistoryTypeRepository;
-
+import com.groupswd391.fall22.entity.Wallet;
+import com.groupswd391.fall22.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,18 +13,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class HistoryTypeAPI {
+public class WalletController {
 
     @Autowired
-    private HistoryTypeRepository historyTypeRepository;
+    private WalletRepository walletRepository;
 
-    @RequestMapping(value = "/historyType/", method = RequestMethod.GET)
-    public ResponseEntity<List<HistoryType>> listAllMajor(){
-        List<HistoryType> listHistoryType = historyTypeRepository.findAll();
-        if(listHistoryType.isEmpty()) {
+    @RequestMapping(value = "/wallet/", method = RequestMethod.GET)
+    public ResponseEntity<List<Wallet>> listAllMajor(){
+        List<Wallet> listWallets = walletRepository.findAll();
+        if(listWallets.isEmpty()) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<HistoryType>>(listHistoryType, HttpStatus.OK);
+        return new ResponseEntity<List<Wallet>>(listWallets, HttpStatus.OK);
     }
-
 }

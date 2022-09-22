@@ -1,7 +1,10 @@
 package com.groupswd391.fall22.controller;
 
-import com.groupswd391.fall22.entity.Wallet;
-import com.groupswd391.fall22.repository.WalletRepository;
+
+
+import com.groupswd391.fall22.entity.ProjectType;
+import com.groupswd391.fall22.repository.ProjectTypeRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +16,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class WalletAPI {
+public class ProjectTypeController {
 
     @Autowired
-    private WalletRepository walletRepository;
+    private ProjectTypeRepository projectTypeRepository;
 
-    @RequestMapping(value = "/wallet/", method = RequestMethod.GET)
-    public ResponseEntity<List<Wallet>> listAllMajor(){
-        List<Wallet> listWallets = walletRepository.findAll();
-        if(listWallets.isEmpty()) {
+    @RequestMapping(value = "/projectType/", method = RequestMethod.GET)
+    public ResponseEntity<List<ProjectType>> listAllMajor(){
+        List<ProjectType> listProjectTypes = projectTypeRepository.findAll();
+        if(listProjectTypes.isEmpty()) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<Wallet>>(listWallets, HttpStatus.OK);
+        return new ResponseEntity<List<ProjectType>>(listProjectTypes, HttpStatus.OK);
     }
 }
