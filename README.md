@@ -1,7 +1,7 @@
-Author: Long PN
-Co: Như LQ, Phiên TQ
+Author: Long PN<br>
+Co: Như LQ, Phiên TQ<br>
 ---------------------------------------------
 
-Project back-end:
-	- Build api for group project swd391-fall22-group1
-	- Manager UX/UI Portal
+Project back-end:<br>
+	- Build api for group project swd391-fall22-group1<br>
+	- Manager UX/UI Portal<br>
