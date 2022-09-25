@@ -10,12 +10,12 @@ public class History {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "historyType_ID", nullable = false)
+    @ManyToOne(targetEntity = HistoryType.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "historytype_ID", referencedColumnName = "id")
     private HistoryType historyType;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_ID", nullable = false)
+    @ManyToOne(targetEntity = User.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_ID", referencedColumnName = "id")
     private User user;
 
     private String description;
@@ -23,10 +23,8 @@ public class History {
     public History() {
     }
 
-    public History(String id, HistoryType historyType, User user, String description) {
+    public History(String id, String description) {
         this.id = id;
-        this.historyType = historyType;
-        this.user = user;
         this.description = description;
     }
 

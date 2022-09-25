@@ -11,21 +11,19 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "order_ID", nullable = false)
+    @ManyToOne(targetEntity = Order.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "oder_ID", referencedColumnName = "id")
     private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "wallet_ID", nullable = false)
+    @ManyToOne(targetEntity = Wallet.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "wallet_ID", referencedColumnName = "id")
     private Wallet wallet;
 
     public Transaction() {
     }
 
-    public Transaction(String id, Order order, Wallet wallet) {
+    public Transaction(String id) {
         this.id = id;
-        this.order = order;
-        this.wallet = wallet;
     }
 
     public String getId() {

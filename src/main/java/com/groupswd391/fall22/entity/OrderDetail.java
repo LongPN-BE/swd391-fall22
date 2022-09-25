@@ -11,12 +11,12 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "order_ID", nullable = false)
+    @ManyToOne(targetEntity = Order.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_ID", referencedColumnName = "id")
     private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "projectItem_ID", nullable = false)
+    @ManyToOne(targetEntity = ProjectItem.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "projectitem_ID", referencedColumnName = "id")
     private ProjectItem projectItem;
 
     public OrderDetail() {

@@ -13,8 +13,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "application_ID", nullable = false)
+    @ManyToOne(targetEntity = Application.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "application_ID", referencedColumnName = "id")
     private Application application;
 
     private Timestamp time;
@@ -24,9 +24,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(String id, Application application, Timestamp time, double amount, boolean status) {
+    public Order(String id, Timestamp time, double amount, boolean status) {
         this.id = id;
-        this.application = application;
         this.time = time;
         this.amount = amount;
         this.status = status;

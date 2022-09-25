@@ -11,12 +11,12 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "projectType_ID", nullable = false)
+    @ManyToOne(targetEntity = ProjectType.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "projecttype_ID", referencedColumnName = "id")
     private ProjectType projectType;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_ID", nullable = false)
+    @ManyToOne(targetEntity = User.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_ID", referencedColumnName = "id")
     private User user;
 
     private String name;
@@ -26,10 +26,8 @@ public class Project {
     public Project() {
     }
 
-    public Project(String id, ProjectType projectType, User user, String name, String description) {
+    public Project(String id, String name, String description) {
         this.id = id;
-        this.projectType = projectType;
-        this.user = user;
         this.name = name;
         this.description = description;
     }

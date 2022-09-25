@@ -11,8 +11,8 @@ public class ProjectItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "project_ID", nullable = false)
+    @ManyToOne(targetEntity = Project.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_ID", referencedColumnName = "id")
     private Project project;
 
     private double min_price;
@@ -25,9 +25,8 @@ public class ProjectItem {
     public ProjectItem() {
     }
 
-    public ProjectItem(String id, Project project, double min_price, double max_price, String requirement, Integer neededNum, Integer soldNum, Integer appliedNum) {
+    public ProjectItem(String id, double min_price, double max_price, String requirement, Integer neededNum, Integer soldNum, Integer appliedNum) {
         this.id = id;
-        this.project = project;
         this.min_price = min_price;
         this.max_price = max_price;
         this.requirement = requirement;

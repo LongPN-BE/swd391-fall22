@@ -12,12 +12,12 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String ID;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "projectItem_ID", nullable = false)
+    @ManyToOne(targetEntity = ProjectItem.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "projectitem_ID", referencedColumnName = "id")
     private ProjectItem projectItem;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_ID", nullable = false)
+    @ManyToOne(targetEntity = User.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_ID", referencedColumnName = "id")
     private User user;
 
     private String requirement;
@@ -27,10 +27,8 @@ public class Application {
     public Application() {
     }
 
-    public Application(String ID, ProjectItem projectItem, User user, String requirement, double price, Timestamp time) {
+    public Application(String ID, String requirement, double price, Timestamp time) {
         this.ID = ID;
-        this.projectItem = projectItem;
-        this.user = user;
         this.requirement = requirement;
         this.price = price;
         this.time = time;
