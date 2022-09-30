@@ -6,7 +6,9 @@ import java.sql.Date;
 import com.groupswd391.fall22.Major.Major;
 import com.groupswd391.fall22.Role.Role;
 import lombok.Data;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @Data
 @Entity
 @Table(name = "tbl_user")

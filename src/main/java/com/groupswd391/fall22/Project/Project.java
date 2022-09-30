@@ -3,9 +3,12 @@ package com.groupswd391.fall22.Project;
 
 import com.groupswd391.fall22.ProjectType.ProjectType;
 import com.groupswd391.fall22.User.User;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 
+
+@CrossOrigin
 @Entity
 @Table(name = "tbl_project")
 public class Project {

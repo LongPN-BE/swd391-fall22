@@ -2,9 +2,12 @@ package com.groupswd391.fall22.ProjectType;
 
 
 import com.groupswd391.fall22.Major.Major;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 
+
+@CrossOrigin
 @Entity
 @Table(name = "tbl_projecttype")
 public class ProjectType {

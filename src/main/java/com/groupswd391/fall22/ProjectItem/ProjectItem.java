@@ -2,9 +2,12 @@ package com.groupswd391.fall22.ProjectItem;
 
 
 import com.groupswd391.fall22.Project.Project;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 
+
+@CrossOrigin
 @Entity
 @Table(name = "tbl_projectItem")
 public class ProjectItem {
