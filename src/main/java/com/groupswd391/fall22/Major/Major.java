@@ -3,29 +3,29 @@ package com.groupswd391.fall22.Major;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_major")
+@Table(name = "major")
 public class Major {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
     private String name;
     private String description;
 
     public Major() {
     }
 
-    public Major(String id, String name, String description) {
+    public Major(int id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

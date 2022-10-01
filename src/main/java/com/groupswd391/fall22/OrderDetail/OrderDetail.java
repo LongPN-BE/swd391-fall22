@@ -7,12 +7,12 @@ import com.groupswd391.fall22.Order.Order;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_orderDetail")
+@Table(name = "orderDetail")
 public class OrderDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
 
     @ManyToOne(targetEntity = Order.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "order_ID", referencedColumnName = "id")
@@ -25,17 +25,17 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public OrderDetail(String id, Order order, ProjectItem projectItem) {
+    public OrderDetail(int id, Order order, ProjectItem projectItem) {
         this.id = id;
         this.order = order;
         this.projectItem = projectItem;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

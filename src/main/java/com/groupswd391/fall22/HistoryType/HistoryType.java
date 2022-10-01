@@ -4,28 +4,28 @@ package com.groupswd391.fall22.HistoryType;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_historytype")
+@Table(name = "historytype")
 public class HistoryType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
     private String name;
     private String description;
 
     public HistoryType() {
     }
 
-    public HistoryType(String id, String name, String description) {
+    public HistoryType(int id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

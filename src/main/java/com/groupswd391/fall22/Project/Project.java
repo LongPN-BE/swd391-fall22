@@ -10,12 +10,12 @@ import javax.persistence.*;
 
 @CrossOrigin
 @Entity
-@Table(name = "tbl_project")
+@Table(name = "project")
 public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
 
     @ManyToOne(targetEntity = ProjectType.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "projecttype_ID", referencedColumnName = "id")
@@ -32,17 +32,17 @@ public class Project {
     public Project() {
     }
 
-    public Project(String id, String name, String description) {
+    public Project(int id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

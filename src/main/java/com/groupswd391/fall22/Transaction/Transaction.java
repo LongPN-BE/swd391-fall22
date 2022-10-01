@@ -7,12 +7,12 @@ import com.groupswd391.fall22.Order.Order;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_transaction")
+@Table(name = "transaction")
 public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
 
     @ManyToOne(targetEntity = Order.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "oder_ID", referencedColumnName = "id")
@@ -25,15 +25,11 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

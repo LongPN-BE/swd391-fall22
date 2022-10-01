@@ -7,11 +7,11 @@ import com.groupswd391.fall22.HistoryType.HistoryType;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_history")
+@Table(name = "history")
 public class History {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
 
     @ManyToOne(targetEntity = HistoryType.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "historytype_ID", referencedColumnName = "id")
@@ -26,16 +26,16 @@ public class History {
     public History() {
     }
 
-    public History(String id, String description) {
+    public History(int id, String description) {
         this.id = id;
         this.description = description;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

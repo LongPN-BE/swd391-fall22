@@ -8,12 +8,12 @@ import java.sql.Timestamp;
 
 
 @Entity
-@Table(name = "tbl_application")
+@Table(name = "application")
 public class Application {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String ID;
+    private int id;
 
     @ManyToOne(targetEntity = ProjectItem.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "projectitem_ID", referencedColumnName = "id")
@@ -30,19 +30,19 @@ public class Application {
     public Application() {
     }
 
-    public Application(String ID, String requirement, double price, Timestamp time) {
-        this.ID = ID;
+    public Application(int ID, String requirement, double price, Timestamp time) {
+        this.id = ID;
         this.requirement = requirement;
         this.price = price;
         this.time = time;
     }
 
-    public String getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ProjectItem getProjectItem() {

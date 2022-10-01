@@ -8,12 +8,12 @@ import javax.persistence.*;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "tbl_wallet")
+@Table(name = "wallet")
 public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     @ManyToOne( targetEntity = User.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_ID", referencedColumnName = "id")
@@ -25,18 +25,18 @@ public class Wallet {
     public Wallet() {
     }
 
-    public Wallet(String id, String name, double amount, boolean status) {
+    public Wallet(Long id, String name, double amount, boolean status) {
         this.id = id;
         this.name = name;
         this.amount = amount;
         this.status = status;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

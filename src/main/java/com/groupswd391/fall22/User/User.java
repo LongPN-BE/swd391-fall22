@@ -2,21 +2,24 @@ package com.groupswd391.fall22.User;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 import com.groupswd391.fall22.Major.Major;
 import com.groupswd391.fall22.Role.Role;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin
 @Data
 @Entity
-@Table(name = "tbl_user")
-public class User {
+@Table(name = "user")
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
 
     @ManyToOne( targetEntity = Role.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "role_ID", referencedColumnName = "id")
@@ -26,8 +29,12 @@ public class User {
     @JoinColumn(name = "major_ID", referencedColumnName = "id")
     private Major major;
 
-    private String firstname;
-    private String lastname;
+    private String fullname;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(unique = true)
     private String email;
     private String phone;
     private Date dob;
@@ -38,10 +45,10 @@ public class User {
     public User() {
     }
 
-    public User(String id, String firstname, String lastname, String email, String phone, Date dob, Integer legit, boolean status, String img) {
+    public User(int id, String fullname, String password, String email, String phone, Date dob, Integer legit, boolean status, String img) {
         this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.fullname = fullname;
+        this.password = password;
         this.email = email;
         this.phone = phone;
         this.dob = dob;
@@ -50,88 +57,42 @@ public class User {
         this.img = img;
     }
 
-    public String getId() {
-        return id;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getPassword() {
+        return password;
     }
 
-    public Role getRole() {
-        return role;
+    @Override
+    public String getUsername() {
+        return this.email;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public Major getMajor() {
-        return major;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setMajor(Major major) {
-        this.major = major;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getFirstname() {
-        return firstname;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public Integer getLegit() {
-        return legit;
-    }
-
-    public void setLegit(Integer legit) {
-        this.legit = legit;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public String getImg() {
-        return img;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setImg(String img) {
