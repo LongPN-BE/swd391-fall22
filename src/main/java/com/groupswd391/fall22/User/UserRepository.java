@@ -16,9 +16,9 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT e FROM User e WHERE e.id = :id")
-    User getUserById(@Param("id") String id);
+    User getUserById(@Param("id") int id);
 
-//    Page<User> findByFullContaining(String firstname, Pageable pagingSort);
+    Page<User> findByFullnameContaining(String fullname, Pageable pagingSort);
 
     Optional<User> findByEmail(String email);
 

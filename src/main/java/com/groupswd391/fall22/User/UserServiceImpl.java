@@ -11,6 +11,8 @@ import com.groupswd391.fall22.User.DTO.UserDtoRequestLogin;
 import com.groupswd391.fall22.User.DTO.UserDtoResponse;
 import com.groupswd391.fall22.jwtToken.JwtUtil;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -72,6 +74,7 @@ public class UserServiceImpl implements UserService {
         return ResponseEntity.badRequest().body("Roles not found");
 
     }
+
 
     @Override
     public ResponseEntity<?> Login(UserDtoRequestLogin userDtoRequestLogin) {

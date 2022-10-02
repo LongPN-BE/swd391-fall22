@@ -3,8 +3,7 @@ package com.groupswd391.fall22.User;
 
 import com.groupswd391.fall22.User.DTO.UserDtoRequest;
 import com.groupswd391.fall22.User.DTO.UserDtoRequestLogin;
-import com.groupswd391.fall22.User.User;
-import com.groupswd391.fall22.User.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,7 +35,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public User findUserByID(@PathVariable("id") String id) {
+    public User findUserByID(@PathVariable("id") int id) {
         User user = userRepository.getUserById(id);
         if(user == null) {
             ResponseEntity.notFound().build();
@@ -44,36 +43,36 @@ public class UserController {
         return user;
     }
 
-//    @GetMapping (produces = "application/json; charset=utf-8")
-//    @RequestMapping(value = "/users", method = RequestMethod.GET)
-//    ResponseEntity<Map<String, Object>> getUsers(
-//            @RequestParam(required = false) String fullname,
-//            @RequestParam(defaultValue = "0") int page,
-//            @RequestParam(defaultValue = "3") int size) {
-//        try {
-//            List<User> users = new ArrayList<User>();
-//            Pageable paging = PageRequest.of(page, size);
-//
-//            Page<User> pageTuts;
-//
-//            if (fullname == null)
-//                pageTuts = userRepository.findAll(paging);
-//            else
-//                pageTuts = userRepository.findByFullContaining(fullname, paging);
-//
-//            users = pageTuts.getContent();
-//
-//            Map<String, Object> response = new HashMap<>();
-//            response.put("accounts", users);
-//            response.put("currentPage", pageTuts.getNumber());
-//            response.put("totalItems", pageTuts.getTotalElements());
-//            response.put("totalPages", pageTuts.getTotalPages());
-//
-//            return new ResponseEntity<>(response, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @GetMapping (produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    ResponseEntity<Map<String, Object>> getUsers(
+            @RequestParam(required = false) String fullname,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        try {
+            List<User> users = new ArrayList<User>();
+            Pageable paging = PageRequest.of(page, size);
+
+            Page<User> pageTuts;
+
+            if (fullname == null)
+                pageTuts = userRepository.findAll(paging);
+            else
+                pageTuts = userRepository.findByFullnameContaining(fullname, paging);
+
+            users = pageTuts.getContent();
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("accounts", users);
+            response.put("currentPage", pageTuts.getNumber());
+            response.put("totalItems", pageTuts.getTotalElements());
+            response.put("totalPages", pageTuts.getTotalPages());
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PostMapping("/login")
     ResponseEntity<?> login(@RequestBody @Valid UserDtoRequestLogin request) {
