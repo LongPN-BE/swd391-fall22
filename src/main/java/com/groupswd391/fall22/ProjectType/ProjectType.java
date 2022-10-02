@@ -2,11 +2,16 @@ package com.groupswd391.fall22.ProjectType;
 
 
 import com.groupswd391.fall22.Major.Major;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @CrossOrigin
 @Entity
 @Table(name = "projecttype")
@@ -22,9 +27,6 @@ public class ProjectType {
 
     private String name;
     private String description;
-
-    public ProjectType() {
-    }
 
     public ProjectType(int id, String name, String description) {
         this.id = id;
