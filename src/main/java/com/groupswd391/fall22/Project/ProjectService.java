@@ -1,39 +1,19 @@
 package com.groupswd391.fall22.Project;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.List;
+import java.util.Map;
 
 @Service
-@Transactional
-public class ProjectService {
+public interface ProjectService {
+    Project addProject(Project project);
 
-    @Autowired
-    private ProjectRepository projectRepository;
+//    public List<Project> getProjects();
 
-    public Project save(Project project){
-        return projectRepository.save(project);
-    }
+    ResponseEntity<Map<String, Object>> getProjects(int page, int size);
 
-    public List<Project> projects(){
-        return projectRepository.findAll();
-    }
-    public Project getProjectByID(int id){
-        return projectRepository.findById(id).orElse(null);
-    }
+    String deleteProject(int id);
 
-    public String deletetProject(int id){
-        projectRepository.deleteById(id);
-        return "Project removed " + id;
-    }
-    public Project updateProject(Project project){
-        Project existingProject= projectRepository.findById(project.getId()).orElse(null);
-        existingProject.setProjectType(project.getProjectType());
-        existingProject.setName(project.getName());
-        existingProject.setDescription(project.getDescription());
-        return projectRepository.save(existingProject);
-    }
-
+    Project updateProject(Project project);
 }
