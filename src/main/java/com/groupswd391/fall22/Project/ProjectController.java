@@ -28,13 +28,13 @@ public class ProjectController {
 
     //Remove 1 project
     @DeleteMapping ("/project")
-    public String deleteProject(@PathVariable int id){
-        return projectService.deleteProject(id);
+    public Project deleteProject(@RequestBody Project project){
+        return projectService.deleteProject(project);
     }
 
     //Modify 1 project
     @PutMapping ("/project")
-    public Project UpdateProject(@RequestBody Project project){
+    public Project updateProject(@RequestBody Project project){
         return projectService.updateProject(project);
     }
 }

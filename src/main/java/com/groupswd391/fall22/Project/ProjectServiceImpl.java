@@ -49,17 +49,24 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public String deleteProject(int id){
-        projectRepository.deleteById(id);
-        return "Project removed is " + id;
+    public Project deleteProject(Project project){
+        Project existingProject= projectRepository.findById(project.getId()).orElse(null);
+        if (existingProject != null) {
+            existingProject.setStatus(false);
+            return projectRepository.save(existingProject);
+        }
+        return null;
     }
 
     @Override
     public Project updateProject(Project project){
         Project existingProject= projectRepository.findById(project.getId()).orElse(null);
-        existingProject.setProjectType(project.getProjectType());
-        existingProject.setName(project.getName());
-        existingProject.setDescription(project.getDescription());
-        return projectRepository.save(existingProject);
+        if (existingProject != null){
+            existingProject.setProjectType(project.getProjectType());
+            existingProject.setName(project.getName());
+            existingProject.setDescription(project.getDescription());
+            return projectRepository.save(existingProject);
+        }
+        return null;
     }
 }

@@ -26,18 +26,23 @@ public class ProjectItem {
     private Integer neededNum;
     private Integer soldNum;
     private Integer appliedNum;
+    private boolean status;
 
     public ProjectItem() {
     }
 
-    public ProjectItem(int id, double min_price, double max_price, String requirement, Integer neededNum, Integer soldNum, Integer appliedNum) {
+    public ProjectItem(int id, Project project, double min_price, double max_price,
+                       String requirement, Integer neededNum, Integer soldNum,
+                       Integer appliedNum, boolean status) {
         this.id = id;
+        this.project = project;
         this.min_price = min_price;
         this.max_price = max_price;
         this.requirement = requirement;
         this.neededNum = neededNum;
         this.soldNum = soldNum;
         this.appliedNum = appliedNum;
+        this.status = status;
     }
 
     public int getId() {
@@ -102,5 +107,13 @@ public class ProjectItem {
 
     public void setAppliedNum(Integer appliedNum) {
         this.appliedNum = appliedNum;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
