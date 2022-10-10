@@ -13,7 +13,7 @@ public interface ProjectService {
 
     ResponseEntity<Map<String, Object>> getProjects(int page, int size);
 
-    String deleteProject(int id);
+    Project deleteProject(Project project);
 
     Project updateProject(Project project);
 }

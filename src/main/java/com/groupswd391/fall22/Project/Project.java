@@ -27,15 +27,17 @@ public class Project {
 
     private String name;
     private String description;
+    private boolean status;
 
 
     public Project() {
     }
 
-    public Project(int id, String name, String description) {
+    public Project(int id, String name, String description, boolean status) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.status = status;
     }
 
     public int getId() {
@@ -76,5 +78,13 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
