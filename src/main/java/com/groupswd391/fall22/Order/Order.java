@@ -1,14 +1,17 @@
 package com.groupswd391.fall22.Order;
 
 import com.groupswd391.fall22.Application.Application;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 
-
+@Data
 @Entity
 @Table(name = "order")
+@AllArgsConstructor
 public class Order {
 
     @Id
@@ -19,57 +22,17 @@ public class Order {
     @JoinColumn(name = "application_ID", referencedColumnName = "id")
     private Application application;
 
-    private Timestamp time;
+    private Date time;
     private double amount;
     private boolean status;
 
     public Order() {
     }
 
-    public Order(int id, Timestamp time, double amount, boolean status) {
+    public Order(int id, Date time, double amount, boolean status) {
         this.id = id;
         this.time = time;
         this.amount = amount;
-        this.status = status;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Application getApplication() {
-        return application;
-    }
-
-    public void setApplication(Application application) {
-        this.application = application;
-    }
-
-    public Timestamp getTime() {
-        return time;
-    }
-
-    public void setTime(Timestamp time) {
-        this.time = time;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
         this.status = status;
     }
 }
