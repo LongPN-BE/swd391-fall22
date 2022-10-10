@@ -34,7 +34,7 @@ public class ProjectController {
 
     //Modify 1 project
     @PutMapping ("/project")
-    public Project UpdateProject(@RequestBody Project project){
+    public Project updateProject(@RequestBody Project project){
         return projectService.updateProject(project);
     }
 }
