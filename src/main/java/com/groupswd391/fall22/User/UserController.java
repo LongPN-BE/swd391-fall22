@@ -3,8 +3,6 @@ package com.groupswd391.fall22.User;
 
 import com.groupswd391.fall22.User.DTO.UserDtoRequest;
 import com.groupswd391.fall22.User.DTO.UserDtoRequestLogin;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -12,62 +10,56 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
+    final UserRepository userRepository;
 
     final
     UserService userService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public User findUserByID(@PathVariable("id") int id) {
+    @GetMapping("/{id}")
+    public User findUserByID(@PathVariable int id) {
         User user = userRepository.getUserById(id);
-        if(user == null) {
+        if (user == null) {
             ResponseEntity.notFound().build();
         }
         return user;
     }
 
-    @GetMapping (produces = "application/json; charset=utf-8")
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    ResponseEntity<Map<String, Object>> getUsers(
+
+    @GetMapping
+    public ResponseEntity<Map<String, Object>> getUsers(
             @RequestParam(required = false) String fullname,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "10") int size){
         try {
-            List<User> users = new ArrayList<User>();
-            Pageable paging = PageRequest.of(page, size);
+            Map<String, Object> response = (Map<String, Object>) userService.getUsers(fullname, page, size);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-            Page<User> pageTuts;
-
-            if (fullname == null)
-                pageTuts = userRepository.findAll(paging);
-            else
-                pageTuts = userRepository.findByFullnameContaining(fullname, paging);
-
-            users = pageTuts.getContent();
-
-            Map<String, Object> response = new HashMap<>();
-            response.put("accounts", users);
-            response.put("currentPage", pageTuts.getNumber());
-            response.put("totalItems", pageTuts.getTotalElements());
-            response.put("totalPages", pageTuts.getTotalPages());
-
+    @GetMapping("/{major}")
+    public ResponseEntity<Map<String, Object>> getUsersByMajor(
+            @PathVariable(required = false) String major,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+        try {
+            Map<String, Object> response = (Map<String, Object>) userService.getUsersByMajor(major, page, size);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -78,6 +70,7 @@ public class UserController {
     ResponseEntity<?> login(@RequestBody @Valid UserDtoRequestLogin request) {
         return userService.Login(request);
     }
+
     @PostMapping("/register")
     ResponseEntity<?> register(@RequestBody @Valid UserDtoRequest request) {
         return userService.Register(request);

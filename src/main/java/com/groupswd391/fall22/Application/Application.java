@@ -2,11 +2,17 @@ package com.groupswd391.fall22.Application;
 
 import com.groupswd391.fall22.ProjectItem.ProjectItem;
 import com.groupswd391.fall22.User.User;
+import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 
+@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "application")
 public class Application {
@@ -15,73 +21,17 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(targetEntity = ProjectItem.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "projectitem_ID", referencedColumnName = "id")
+    @ManyToOne(targetEntity = ProjectItem.class)
+    @JoinColumn(name = "projectItem_ID", referencedColumnName = "id")
     private ProjectItem projectItem;
 
-    @ManyToOne(targetEntity = User.class,cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_ID", referencedColumnName = "id")
     private User user;
 
     private String requirement;
     private double price;
-    private Timestamp time;
+    private Date time;
 
-    public Application() {
-    }
 
-    public Application(int ID, String requirement, double price, Timestamp time) {
-        this.id = ID;
-        this.requirement = requirement;
-        this.price = price;
-        this.time = time;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public ProjectItem getProjectItem() {
-        return projectItem;
-    }
-
-    public void setProjectItem(ProjectItem projectItem) {
-        this.projectItem = projectItem;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getRequirement() {
-        return requirement;
-    }
-
-    public void setRequirement(String requirement) {
-        this.requirement = requirement;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public Timestamp getTime() {
-        return time;
-    }
-
-    public void setTime(Timestamp time) {
-        this.time = time;
-    }
 }
