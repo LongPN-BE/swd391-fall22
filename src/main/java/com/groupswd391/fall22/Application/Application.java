@@ -4,7 +4,7 @@ import com.groupswd391.fall22.ProjectItem.ProjectItem;
 import com.groupswd391.fall22.User.User;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 
 @Entity
@@ -25,12 +25,12 @@ public class Application {
 
     private String requirement;
     private double price;
-    private Timestamp time;
+    private Date time;
 
     public Application() {
     }
 
-    public Application(int ID, String requirement, double price, Timestamp time) {
+    public Application(int ID, String requirement, double price, Date time) {
         this.id = ID;
         this.requirement = requirement;
         this.price = price;
@@ -77,11 +77,11 @@ public class Application {
         this.price = price;
     }
 
-    public Timestamp getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 }

@@ -1,4 +1,4 @@
-package com.groupswd391.fall22.Project.DTO;
+package com.groupswd391.fall22.ProjectType.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,13 +9,11 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ProjectRequest {
+public class ProjectTypeDTORequest {
+    @NotNull
+    private int majorID;
     @NotNull
     private String name;
     @NotNull
     private String description;
-    @NotNull
-    private int userID;
-    @NotNull
-    private int projectTypeID;
 }
