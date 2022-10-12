@@ -1,8 +1,7 @@
 package com.groupswd391.fall22.Application;
 
-import com.groupswd391.fall22.Application.DTO.ApplicationDTORequest;
-import com.groupswd391.fall22.User.DTO.UserDtoRequest;
-import org.springframework.http.ResponseEntity;
+import com.groupswd391.fall22.Application.DTO.ApplicationRequest;
+import com.groupswd391.fall22.Application.DTO.ApplicationResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -10,7 +9,8 @@ import java.util.Map;
 @Service
 public interface ApplicationService {
 
-    ResponseEntity<?> createApplication(ApplicationDTORequest applicationDTORequest);
-
+    ApplicationResponse createApplication(ApplicationRequest applicationRequest);
+    ApplicationResponse updateApplication(ApplicationRequest applicationRequest, int id);
+    boolean deleteApplication(int id);
     Map<String, Object> getApplicationByUserID(int userID, int page, int size);
 }

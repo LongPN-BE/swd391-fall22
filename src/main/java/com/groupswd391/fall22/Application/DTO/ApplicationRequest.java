@@ -10,7 +10,7 @@ import java.sql.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ApplicationDTORequest {
+public class ApplicationRequest {
     @NotNull
     private int projectItemID;
     @NotNull
@@ -22,5 +22,5 @@ public class ApplicationDTORequest {
     @NotNull
     private double price;
     @NotNull
-    private Date time;
+    private Date time = (Date) new java.util.Date();
 }

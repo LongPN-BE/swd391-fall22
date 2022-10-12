@@ -9,9 +9,9 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HistoryDTORequest {
+public class HistoryRequest {
     @NotNull
-    private int historytypeID;
+    private int historyTypeID;
     @NotNull
     private int userID;
     @NotNull
