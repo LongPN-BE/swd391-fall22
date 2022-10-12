@@ -1,5 +1,6 @@
 package com.groupswd391.fall22.ProjectItem;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ProjectItemServiceImpl implements ProjectItemService {
+    @Autowired
     private ProjectItemRepository projectItemRepository;
 
     @Override
@@ -55,8 +57,8 @@ public class ProjectItemServiceImpl implements ProjectItemService {
     public ProjectItem updateProjectItem(ProjectItem projectItem) {
         ProjectItem existingProjectItem = projectItemRepository.findById(projectItem.getId()).orElse(null);
         if (existingProjectItem != null) {
-            existingProjectItem.setMin_price(projectItem.getMin_price());
-            existingProjectItem.setMax_price(projectItem.getMax_price());
+            existingProjectItem.setMinPrice(projectItem.getMinPrice());
+            existingProjectItem.setMaxPrice(projectItem.getMaxPrice());
             existingProjectItem.setRequirement(projectItem.getRequirement());
             existingProjectItem.setNeededNum(projectItem.getNeededNum());
             existingProjectItem.setSoldNum(projectItem.getSoldNum());

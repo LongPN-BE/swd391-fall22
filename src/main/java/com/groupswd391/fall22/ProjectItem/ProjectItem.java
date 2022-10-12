@@ -20,8 +20,8 @@ public class ProjectItem {
     @JoinColumn(name = "project_ID", referencedColumnName = "id")
     private Project project;
 
-    private double min_price;
-    private double max_price;
+    private double minPrice;
+    private double maxPrice;
     private String requirement;
     private Integer neededNum;
     private Integer soldNum;
@@ -31,13 +31,13 @@ public class ProjectItem {
     public ProjectItem() {
     }
 
-    public ProjectItem(int id, Project project, double min_price, double max_price,
+    public ProjectItem(int id, Project project, double minPrice, double maxPrice,
                        String requirement, Integer neededNum, Integer soldNum,
                        Integer appliedNum, boolean status) {
         this.id = id;
         this.project = project;
-        this.min_price = min_price;
-        this.max_price = max_price;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
         this.requirement = requirement;
         this.neededNum = neededNum;
         this.soldNum = soldNum;
@@ -61,20 +61,20 @@ public class ProjectItem {
         this.project = project;
     }
 
-    public double getMin_price() {
-        return min_price;
+    public double getMinPrice() {
+        return minPrice;
     }
 
-    public void setMin_price(double min_price) {
-        this.min_price = min_price;
+    public void setMinPrice(double minPrice) {
+        this.minPrice = minPrice;
     }
 
-    public double getMax_price() {
-        return max_price;
+    public double getMaxPrice() {
+        return maxPrice;
     }
 
-    public void setMax_price(double max_price) {
-        this.max_price = max_price;
+    public void setMaxPrice(double maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
     public String getRequirement() {

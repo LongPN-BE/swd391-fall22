@@ -37,5 +37,4 @@ public class Application {
     private double price;
     private Date time;
 
-
 }
