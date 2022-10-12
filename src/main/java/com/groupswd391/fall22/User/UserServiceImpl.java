@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
             userRepository.save(account);
             return ResponseEntity.ok().body("Create Email Successful");
         }
-        return ResponseEntity.badRequest().body("Roles not found");
+        return ResponseEntity.badRequest().body("Role or Major not found");
 
     }
 

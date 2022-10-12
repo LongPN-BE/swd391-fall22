@@ -6,13 +6,17 @@ import java.util.Collection;
 
 import com.groupswd391.fall22.Major.Major;
 import com.groupswd391.fall22.Role.Role;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "user")
 public class User implements UserDetails {
@@ -41,21 +45,6 @@ public class User implements UserDetails {
     private Integer legit;
     private boolean status;
     private String img;
-
-    public User() {
-    }
-
-    public User(int id, String fullname, String password, String email, String phone, Date dob, Integer legit, boolean status, String img) {
-        this.id = id;
-        this.fullname = fullname;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-        this.dob = dob;
-        this.legit = legit;
-        this.status = status;
-        this.img = img;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

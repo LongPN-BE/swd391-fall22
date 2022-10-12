@@ -12,9 +12,11 @@ import java.sql.Date;
 @NoArgsConstructor
 public class ApplicationDTORequest {
     @NotNull
-    private int projectitemID;
+    private int projectItemID;
     @NotNull
     private int userID;
+    @NotNull
+    private int userRequestID;
     @NotNull
     private String requirement;
     @NotNull

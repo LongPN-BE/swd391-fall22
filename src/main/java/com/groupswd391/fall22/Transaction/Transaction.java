@@ -3,9 +3,15 @@ package com.groupswd391.fall22.Transaction;
 
 import com.groupswd391.fall22.Wallet.Wallet;
 import com.groupswd391.fall22.Order.Order;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "transaction")
 public class Transaction {
@@ -22,30 +28,4 @@ public class Transaction {
     @JoinColumn(name = "wallet_ID", referencedColumnName = "id")
     private Wallet wallet;
 
-    public Transaction() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Wallet getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
-    }
 }

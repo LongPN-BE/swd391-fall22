@@ -1,9 +1,11 @@
 package com.groupswd391.fall22.Application;
 
 
+import com.groupswd391.fall22.Application.DTO.ApplicationDTORequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -17,6 +19,12 @@ final ApplicationRepository applicationRepository;
 
     public ApplicationServiceImpl(ApplicationRepository applicationRepository) {
         this.applicationRepository = applicationRepository;
+    }
+
+
+    @Override
+    public ResponseEntity<?> createApplication(ApplicationDTORequest applicationDTORequest) {
+        return null;
     }
 
     @Override

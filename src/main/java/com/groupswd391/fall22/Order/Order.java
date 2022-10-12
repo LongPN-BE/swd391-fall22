@@ -3,6 +3,7 @@ package com.groupswd391.fall22.Order;
 import com.groupswd391.fall22.Application.Application;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -12,6 +13,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "order")
 @AllArgsConstructor
+@NoArgsConstructor
 public class Order {
 
     @Id
@@ -26,13 +28,4 @@ public class Order {
     private double amount;
     private boolean status;
 
-    public Order() {
-    }
-
-    public Order(int id, Date time, double amount, boolean status) {
-        this.id = id;
-        this.time = time;
-        this.amount = amount;
-        this.status = status;
-    }
 }

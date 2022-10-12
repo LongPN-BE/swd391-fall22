@@ -29,6 +29,10 @@ public class Application {
     @JoinColumn(name = "user_ID", referencedColumnName = "id")
     private User user;
 
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "userrequest_ID", referencedColumnName = "id")
+    private User userRequest;
+
     private String requirement;
     private double price;
     private Date time;
