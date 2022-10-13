@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HistoryTypeDTORequest {
+public class HistoryTypeRequest {
     @NotNull
     private String name;
     @NotNull

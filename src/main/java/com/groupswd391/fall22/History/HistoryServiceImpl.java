@@ -95,6 +95,7 @@ public class HistoryServiceImpl implements HistoryService{
             pageTuts = historyRepository.findAll(paging);
         } else
 //            pageTuts = historyRepository.find(userID, paging);
+            pageTuts = historyRepository.findAll(paging);
         histories = pageTuts.getContent();
 
         Map<String, Object> response = new HashMap<>();
