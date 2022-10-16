@@ -91,9 +91,9 @@ public class HistoryServiceImpl implements HistoryService{
         List<History> histories = null;
         Pageable paging = PageRequest.of(page, size);
         Page<History> pageTuts = null;
-        if (userID == 0) {
-            pageTuts = historyRepository.findAll(paging);
-        } else
+//        if (userID == 0) {
+//            pageTuts = historyRepository.findAll(paging);
+//        } else
 //            pageTuts = historyRepository.find(userID, paging);
             pageTuts = historyRepository.findAll(paging);
         histories = pageTuts.getContent();

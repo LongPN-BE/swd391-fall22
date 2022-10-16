@@ -1,4 +1,4 @@
-package com.groupswd391.fall22.Role.DTO;
+package com.groupswd391.fall22.Major.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,9 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleDTORequest {
-   @NotNull
- private String name;
- private String description;
+public class MajorRequest {
+    @NotNull
+    private String name;
+    @NotNull
+    private String description;
 }

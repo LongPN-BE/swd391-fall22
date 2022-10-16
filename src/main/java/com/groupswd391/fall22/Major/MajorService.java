@@ -1,12 +1,19 @@
 package com.groupswd391.fall22.Major;
 
+import com.groupswd391.fall22.Major.DTO.MajorRequest;
+import com.groupswd391.fall22.Major.DTO.MajorResponse;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Map;
 
 @Service
 public interface MajorService {
-    List<Major> getList();
+    MajorResponse createMajor(MajorRequest majorRequest);
 
+    MajorResponse updateMajor(MajorRequest majorRequest, int id);
+
+    boolean deleteMajor(int id);
+
+    Map<String, Object> getMajors(int page, int size);
 
 }

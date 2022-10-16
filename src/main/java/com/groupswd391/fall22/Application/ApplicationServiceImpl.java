@@ -108,7 +108,8 @@ public class ApplicationServiceImpl implements ApplicationService {
         if (userID == 0) {
             pageTuts = applicationRepository.findAll(paging);
         } else
-            pageTuts = applicationRepository.findByUserID(userID, paging);
+//            pageTuts = applicationRepository.findByUserID(userID, paging);
+        pageTuts = applicationRepository.findAll(paging);
         applications = pageTuts.getContent();
 
         Map<String, Object> response = new HashMap<>();

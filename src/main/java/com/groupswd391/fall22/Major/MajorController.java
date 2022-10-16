@@ -1,29 +1,26 @@
 package com.groupswd391.fall22.Major;
 
 
-import com.groupswd391.fall22.User.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import com.groupswd391.fall22.Major.DTO.MajorRequest;
+import com.groupswd391.fall22.Major.DTO.MajorResponse;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/majors")
 public class MajorController {
 
-    @Autowired
-    MajorRepository majorRepository;
+    final
+    MajorService majorService;
+
+    public MajorController(MajorService majorService) {
+        this.majorService = majorService;
+    }
 
     @RequestMapping(value = "/majors", method = RequestMethod.GET)
     ResponseEntity<Map<String, Object>> getUsers(
@@ -31,28 +28,36 @@ public class MajorController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         try {
-            List<Major> majors = new ArrayList<Major>();
-            Pageable paging = PageRequest.of(page, size);
-
-            Page<Major> pageTuts;
-
-            if (name == null)
-                pageTuts = majorRepository.findAll(paging);
-            else
-                pageTuts = majorRepository.findByNameContaining(name, paging);
-
-            majors = pageTuts.getContent();
-
-            Map<String, Object> response = new HashMap<>();
-            response.put("majors", majors);
-            response.put("currentPage", pageTuts.getNumber());
-            response.put("totalItems", pageTuts.getTotalElements());
-            response.put("totalPages", pageTuts.getTotalPages());
-
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            return new ResponseEntity<>(majorService.getMajors(page, size), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @Operation(
+            summary = "Tạo 1 major mới ",
+            description = "Tạo 1 major mới "
+    )
+    @PostMapping()
+    MajorResponse addMajor(@Valid @RequestBody MajorRequest majorRequest) {
+        return majorService.createMajor(majorRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteMajor(@PathVariable int id) {
+        if (majorService.deleteMajor(id)) {
+            return new ResponseEntity<>("DELETE SUCCESSFULLY", null, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("DELETE SUCCESSFULLY", null, HttpStatus.BAD_REQUEST);
+    }
+
+    @Operation(
+            summary = "Thay đổi thông tin major",
+            description = "truyền id major muốn thay đổi"
+    )
+    @PutMapping("/{id}")
+    MajorResponse updateMajor(@Valid @RequestBody MajorRequest majorRequest, @PathVariable int id) {
+        return majorService.updateMajor(majorRequest, id);
     }
 
 }
