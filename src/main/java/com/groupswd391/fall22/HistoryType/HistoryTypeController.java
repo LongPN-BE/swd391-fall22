@@ -53,7 +53,7 @@ public class HistoryTypeController {
     )
     @GetMapping("/{name}")
     public ResponseEntity<Map<String, Object>> getHistoryType(
-            @PathVariable(required = false) String name,
+            @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         try {

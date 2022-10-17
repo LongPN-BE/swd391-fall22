@@ -68,8 +68,8 @@ public class HistoryController {
     )
     @GetMapping("/{userID}{historyTypeID}")
     public ResponseEntity<Map<String, Object>> getApplicationsByUserID(
-            @PathVariable(required = false) int userID,
-            @PathVariable(required = false) int historyTypeID,
+            @RequestParam(required = false) int userID,
+            @RequestParam(required = false) int historyTypeID,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         try {

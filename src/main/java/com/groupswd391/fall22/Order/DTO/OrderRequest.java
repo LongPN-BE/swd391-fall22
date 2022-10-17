@@ -11,14 +11,14 @@ import java.sql.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDTORequest {
+public class OrderRequest {
 
     @NotNull
     private int applicationID;
     @NotNull
     private Date time;
     @NotNull
-    private double ammount;
+    private double amount;
 
     private boolean status;
 }

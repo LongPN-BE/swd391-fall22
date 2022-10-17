@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/roles")
 public class
 RoleController {
 
@@ -24,8 +24,8 @@ RoleController {
     }
 
 
-    @RequestMapping(value = "/roles", method = RequestMethod.GET)
-    ResponseEntity<Map<String, Object>> getUsers(
+    @GetMapping
+    ResponseEntity<Map<String, Object>> getRoles(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {

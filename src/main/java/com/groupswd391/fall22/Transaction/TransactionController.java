@@ -1,28 +1,60 @@
-//package com.groupswd391.fall22.Transaction;
-//
-//import com.groupswd391.fall22.Transaction.Transaction;
-//import com.groupswd391.fall22.Transaction.TransactionRepository;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import java.util.List;
-//
-//@RestController
-//@RequestMapping("/api")
-//public class TransactionController {
-//    @Autowired
-//    TransactionRepository transactionRepository;
-//
-//    @RequestMapping(value = "/transactions/", method = RequestMethod.GET)
-//    public ResponseEntity<List<Transaction>> listAllTransactions(){
-//        List<Transaction> listTransactions = transactionRepository.findAll();
-//        if(listTransactions.isEmpty()) {
-//            return new ResponseEntity(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<List<Transaction>>(listTransactions, HttpStatus.OK);
-//    }
-//}
+package com.groupswd391.fall22.Transaction;
+
+import com.groupswd391.fall22.Transaction.DTO.TransactionRequest;
+import com.groupswd391.fall22.Transaction.DTO.TransactionResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/transactions")
+public class TransactionController {
+    final
+    TransactionService transactionService;
+
+    public TransactionController(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
+
+    @GetMapping
+    ResponseEntity<Map<String, Object>> getTransactions(
+            @RequestParam(required = false) String name,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        try {
+            return new ResponseEntity<>(transactionService.getTransactions(page, size), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Operation(
+            summary = "Tạo 1 Transaction mới ",
+            description = "Tạo 1 Transaction mới "
+    )
+    @PostMapping()
+    TransactionResponse addTransaction(@Valid @RequestBody TransactionRequest transactionRequest) {
+        return transactionService.createTransaction(transactionRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteTransaction(@PathVariable int id) {
+        if (transactionService.deleteTransaction(id)) {
+            return new ResponseEntity<>("DELETE SUCCESSFULLY", null, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("DELETE SUCCESSFULLY", null, HttpStatus.BAD_REQUEST);
+    }
+
+    @Operation(
+            summary = "Thay đổi thông tin transaction",
+            description = "truyền id transaction muốn thay đổi"
+    )
+    @PutMapping("/{id}")
+    TransactionResponse updateRole(@Valid @RequestBody TransactionRequest transactionRequest, @PathVariable int id) {
+        return transactionService.updateTransaction(transactionRequest, id);
+    }
+}

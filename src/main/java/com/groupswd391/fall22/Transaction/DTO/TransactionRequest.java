@@ -1,4 +1,5 @@
-package com.groupswd391.fall22.OrderDetail.DTO;
+package com.groupswd391.fall22.Transaction.DTO;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +11,9 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDetailDTORequest {
+public class TransactionRequest {
     @NotNull
     private int orderID;
     @NotNull
-    private int projectitemID;
+    private int walletId;
 }

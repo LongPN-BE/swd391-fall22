@@ -22,7 +22,7 @@ public class MajorController {
         this.majorService = majorService;
     }
 
-    @RequestMapping(value = "/majors", method = RequestMethod.GET)
+    @GetMapping
     ResponseEntity<Map<String, Object>> getUsers(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
