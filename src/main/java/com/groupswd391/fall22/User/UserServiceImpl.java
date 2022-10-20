@@ -1,7 +1,9 @@
 package com.groupswd391.fall22.User;
 
 
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseToken;
 import com.groupswd391.fall22.Major.Major;
 import com.groupswd391.fall22.Major.MajorRepository;
 import com.groupswd391.fall22.Role.Role;
@@ -21,6 +23,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.webjars.NotFoundException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -90,6 +93,30 @@ public class UserServiceImpl implements UserService {
             UserDtoResponseLogin userDtoResponse = new UserDtoResponseLogin(account.getEmail(), accessToken);
             return ResponseEntity.ok(userDtoResponse);
         } catch (BadCredentialsException ex) {
+            return ResponseEntity.badRequest().body("Email Failing");
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> LoginFireBase(String token) {
+        try {
+
+            FirebaseToken decoded = FirebaseAuth.getInstance().verifyIdToken(token);
+            String email = decoded.getEmail();
+            System.out.println("Email: " + email);
+            User user = userRepository.findByEmail(email).orElseThrow(
+                    () -> new NotFoundException("Not found User")
+            );
+            Authentication authentication = manager.authenticate(
+                    new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
+            );
+            User account = (User) authentication.getPrincipal();
+            String accessToken = jwtUtil.generateAccessToken(account);
+            UserDtoResponseLogin userDtoResponse = new UserDtoResponseLogin(account.getEmail(), accessToken);
+            return ResponseEntity.ok(userDtoResponse);
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.badRequest().body("Email Failing");
+        } catch (FirebaseAuthException e) {
             return ResponseEntity.badRequest().body("Email Failing");
         }
     }

@@ -16,6 +16,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("SELECT e FROM User e WHERE e.id = :id")
     User getUserById(@Param("id") int id);
 
+    @Query("SELECT e FROM User e WHERE e.email = :email")
+    User getUserByEmail(@Param("email") String email);
+
     Page<User> findByFullnameContaining(String fullname, Pageable pagingSort);
 
     @Query(value = "select u from User u inner join Major m on u.major.id = m.id" +

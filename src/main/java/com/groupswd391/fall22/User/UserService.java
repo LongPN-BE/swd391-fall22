@@ -12,6 +12,8 @@ import java.util.Map;
 public interface UserService {
     ResponseEntity<?> Login(UserDtoRequestLogin userDtoRequestLogin);
 
+    ResponseEntity<?> LoginFireBase(String token);
+
     ResponseEntity<?> Register(UserDtoRequest userDtoRequest);
 
     Map<String, Object> getUsers(String fullname, int page, int size);
