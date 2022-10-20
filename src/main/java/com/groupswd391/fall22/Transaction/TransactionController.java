@@ -22,7 +22,6 @@ public class TransactionController {
 
     @GetMapping
     ResponseEntity<Map<String, Object>> getTransactions(
-            @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         try {
@@ -54,7 +53,7 @@ public class TransactionController {
             description = "truyền id transaction muốn thay đổi"
     )
     @PutMapping("/{id}")
-    TransactionResponse updateRole(@Valid @RequestBody TransactionRequest transactionRequest, @PathVariable int id) {
+    TransactionResponse updateTransaction(@Valid @RequestBody TransactionRequest transactionRequest, @PathVariable int id) {
         return transactionService.updateTransaction(transactionRequest, id);
     }
 }

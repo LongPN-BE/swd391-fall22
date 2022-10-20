@@ -57,15 +57,11 @@ public class HistoryTypeServiceImpl implements HistoryTypeService {
     }
 
     @Override
-    public Map<String, Object> getHistoryType(String name, int page, int size) {
+    public Map<String, Object> getHistoryType( int page, int size) {
         List<HistoryType> historyTypes = null;
         Pageable paging = PageRequest.of(page, size);
         Page<HistoryType> pageTuts = null;
-        if (name == null) {
-            pageTuts = historyTypeRepository.findAll(paging);
-        } else
-//            pageTuts = historyTypeRepository.find(userID, paging);\
-            pageTuts = historyTypeRepository.findAll(paging);
+        pageTuts = historyTypeRepository.findAll(paging);
         historyTypes = pageTuts.getContent();
 
         Map<String, Object> response = new HashMap<>();

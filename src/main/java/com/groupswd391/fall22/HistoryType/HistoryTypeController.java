@@ -51,13 +51,12 @@ public class HistoryTypeController {
             summary = "Lấy history types",
             description = "Truyền giá trị name if want to find else get all"
     )
-    @GetMapping("/{name}")
+    @GetMapping("")
     public ResponseEntity<Map<String, Object>> getHistoryType(
-            @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         try {
-            Map<String, Object> response = historyTypeService.getHistoryType(name, page, size);
+            Map<String, Object> response = historyTypeService.getHistoryType(page, size);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

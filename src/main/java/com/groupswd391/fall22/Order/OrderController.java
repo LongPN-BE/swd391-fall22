@@ -23,7 +23,6 @@ public class OrderController {
 
     @GetMapping
     ResponseEntity<Map<String, Object>> getOrders(
-            @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         try {
@@ -38,7 +37,7 @@ public class OrderController {
             description = "Tạo 1 order mới "
     )
     @PostMapping()
-    OrderResponse addMajor(@Valid @RequestBody OrderRequest orderRequest) {
+    OrderResponse addOrder(@Valid @RequestBody OrderRequest orderRequest) {
         return orderService.createOrder(orderRequest);
     }
 

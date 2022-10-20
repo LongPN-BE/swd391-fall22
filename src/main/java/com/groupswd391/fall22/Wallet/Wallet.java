@@ -18,7 +18,7 @@ public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @ManyToOne( targetEntity = User.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_ID", referencedColumnName = "id")

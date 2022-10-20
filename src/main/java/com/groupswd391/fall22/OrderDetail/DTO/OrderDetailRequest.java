@@ -14,5 +14,5 @@ public class OrderDetailRequest {
     @NotNull
     private int orderID;
     @NotNull
-    private int projectitemID;
+    private int projectItemID;
 }

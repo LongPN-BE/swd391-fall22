@@ -23,8 +23,7 @@ public class MajorController {
     }
 
     @GetMapping
-    ResponseEntity<Map<String, Object>> getUsers(
-            @RequestParam(required = false) String name,
+    ResponseEntity<Map<String, Object>> getMajors(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         try {

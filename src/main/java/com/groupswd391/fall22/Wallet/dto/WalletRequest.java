@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class WalletDTORequest {
+public class WalletRequest {
     @NotNull
     private int userID;
     @NotNull

@@ -43,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
         order.setTime(orderRequest.getTime());
         order.setAmount(orderRequest.getAmount());
         Order saveOrder = orderRepository.save(order);
-        return OrderResponse.buildFromTransaction(saveOrder);
+        return OrderResponse.buildFromOrder(saveOrder);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
         oldOrder.setTime(orderRequest.getTime());
         oldOrder.setAmount(orderRequest.getAmount());
         Order saveOrder = orderRepository.save(oldOrder);
-        return OrderResponse.buildFromTransaction(saveOrder);
+        return OrderResponse.buildFromOrder(saveOrder);
     }
 
     @Override

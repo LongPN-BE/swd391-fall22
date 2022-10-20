@@ -13,6 +13,6 @@ public interface HistoryTypeService {
     HistoryTypeResponse updateHistoryType(HistoryTypeRequest historyTypeRequest, int id);
     boolean deleteHistoryType(int id);
 
-    Map<String, Object> getHistoryType(String name, int page, int size);
+    Map<String, Object> getHistoryType( int page, int size);
 
 }
