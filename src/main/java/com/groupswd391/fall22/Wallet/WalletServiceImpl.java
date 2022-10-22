@@ -10,6 +10,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
 import org.webjars.NotFoundException;
 
@@ -58,6 +60,30 @@ public class WalletServiceImpl implements WalletService {
         oldWallet.setAmount(walletRequest.getAmount());
         Wallet saveWallet = walletRepository.save(oldWallet);
         return WalletResponse.buildFromWallet(saveWallet);
+    }
+
+    @Override
+    public ResponseEntity<?> getWalletById(int id) {
+        try {
+            Wallet wallet = walletRepository.findById(id).orElseThrow(
+                    () -> new NotFoundException("Not found Wallet")
+            );
+            return ResponseEntity.ok(wallet);
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.badRequest().body("Found Failing");
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> getWalletByUser(int id) {
+        try {
+            Wallet wallet = walletRepository.getWalletByUser(id).orElseThrow(
+                    () -> new NotFoundException("Not found Wallet")
+            );
+            return ResponseEntity.ok(wallet);
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.badRequest().body("Found Failing");
+        }
     }
 
     @Override

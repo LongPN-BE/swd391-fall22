@@ -57,4 +57,14 @@ public class WalletController {
     WalletResponse updateWallet(@Valid @RequestBody WalletRequest walletRequest, @PathVariable int id) {
         return walletService.updateWallet(walletRequest, id);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findWalletByID(@RequestParam int id) {
+        return walletService.getWalletById(id);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> findWalletByUserID(@RequestParam int id) {
+        return walletService.getWalletByUser(id);
+    }
 }
