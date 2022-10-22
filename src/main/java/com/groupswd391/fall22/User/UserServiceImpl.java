@@ -160,4 +160,9 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
+    @Override
+    public User getUsersByID(int userID) {
+        return userRepository.getUserById(userID);
+    }
+
 }

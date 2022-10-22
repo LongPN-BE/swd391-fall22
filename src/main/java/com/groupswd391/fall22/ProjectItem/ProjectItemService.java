@@ -1,15 +1,22 @@
 package com.groupswd391.fall22.ProjectItem;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface ProjectItemService {
-    public ResponseEntity<Map<String, Object>> getProjectItems(int page, int size);
+    List<ProjectItem> getProjectItems(int projectID, Pageable pageable);
 
-    public ProjectItem addProjectItem(ProjectItem projectItem);
+    Optional<ProjectItem> getProjectItemById(int id);
 
-    public ProjectItem deleteProjectItem(ProjectItem projectItem);
+    ResponseEntity<Map<String, Object>> getProjectItems(int page, int size);
 
-    public ProjectItem updateProjectItem(ProjectItem projectItem);
+    ProjectItem addProjectItem(ProjectItem projectItem);
+
+    ProjectItem deleteProjectItem(ProjectItem projectItem);
+
+    ProjectItem updateProjectItem(ProjectItem projectItem);
 }

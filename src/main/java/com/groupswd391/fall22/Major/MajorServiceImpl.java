@@ -12,6 +12,7 @@ import org.webjars.NotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Component
 public class MajorServiceImpl implements MajorService {
@@ -68,5 +69,10 @@ public class MajorServiceImpl implements MajorService {
         response.put("totalItems", pageTuts.getTotalElements());
         response.put("totalPages", pageTuts.getTotalPages());
         return response;
+    }
+
+    @Override
+    public Optional<Major> getMajorByID(int id) {
+        return Optional.ofNullable(majorRepository.getMajorByID(id));
     }
 }

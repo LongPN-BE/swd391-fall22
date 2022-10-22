@@ -2,67 +2,35 @@ package com.groupswd391.fall22.ProjectType;
 
 
 import com.groupswd391.fall22.Major.Major;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @CrossOrigin
 @Entity
-@Table(name = "projecttype")
+@Table(name = "project_type")
 public class ProjectType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @ManyToOne( targetEntity = Major.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "major_ID", referencedColumnName = "id")
     private Major major;
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
     private String description;
 
-    public ProjectType(int id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Major getMajor() {
-        return major;
-    }
-
-    public void setMajor(Major major) {
-        this.major = major;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    @Column(name = "status")
+    private int status;
 }

@@ -19,4 +19,6 @@ public interface UserService {
     Map<String, Object> getUsers(String fullname, int page, int size);
 
     Map<String, Object> getUsersByMajor(String major, int page, int size);
+
+    User getUsersByID(int userID);
 }

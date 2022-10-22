@@ -5,11 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ProjectTypeDTORequest {
+public class ProjectTypeDTO implements Serializable {
     @NotNull
     private int majorID;
     @NotNull

@@ -1,19 +1,29 @@
 package com.groupswd391.fall22.Project;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public interface ProjectService {
-    Project addProject(Project project);
+//    Project addProject(Project project);
+//
+//    ResponseEntity<Map<String, Object>> getProjects(int page, int size);
+//
+//    Project deleteProject(Project project);
+//
+//    Project updateProject(Project project);
 
-//    public List<Project> getProjects();
+    List<Project> getProjects(String dataSearch, Pageable pageable);
 
-    ResponseEntity<Map<String, Object>> getProjects(int page, int size);
+    <S extends Project> S saveProject(S project);
 
-    Project deleteProject(Project project);
+    Optional<Project> getProjectById(int id);
 
-    Project updateProject(Project project);
+    void deleteProject(Project project);
+
 }

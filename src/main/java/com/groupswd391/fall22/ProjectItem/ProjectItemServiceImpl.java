@@ -10,10 +10,21 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class ProjectItemServiceImpl implements ProjectItemService {
     @Autowired
     private ProjectItemRepository projectItemRepository;
+
+    @Override
+    public List<ProjectItem> getProjectItems(int projectID, Pageable pageable) {
+        return projectItemRepository.getItemsList(projectID, pageable);
+    }
+
+    @Override
+    public Optional<ProjectItem> getProjectItemById(int id) {
+        return Optional.ofNullable(projectItemRepository.getItem(id));
+    }
 
     @Override
     public ResponseEntity<Map<String, Object>> getProjectItems(int page, int size) {
@@ -47,7 +58,7 @@ public class ProjectItemServiceImpl implements ProjectItemService {
     public ProjectItem deleteProjectItem(ProjectItem projectItem) {
         ProjectItem existingProjectItem = projectItemRepository.findById(projectItem.getId()).orElse(null);
         if (existingProjectItem != null) {
-            existingProjectItem.setStatus(false);
+            existingProjectItem.setStatus(3);
             return projectItemRepository.save(existingProjectItem);
         }
         return null;
