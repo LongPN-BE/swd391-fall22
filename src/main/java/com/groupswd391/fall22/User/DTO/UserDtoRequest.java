@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.sql.Date;
 
 @Data
 @AllArgsConstructor
@@ -23,5 +24,6 @@ public class UserDtoRequest {
     @NotNull
     private String img;
 
+    private Date dob;
     private boolean status ;
 }

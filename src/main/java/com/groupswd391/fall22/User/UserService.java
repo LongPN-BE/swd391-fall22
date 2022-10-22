@@ -1,7 +1,10 @@
 package com.groupswd391.fall22.User;
 
+import com.groupswd391.fall22.Transaction.DTO.TransactionRequest;
+import com.groupswd391.fall22.Transaction.DTO.TransactionResponse;
 import com.groupswd391.fall22.User.DTO.UserDtoRequest;
 import com.groupswd391.fall22.User.DTO.UserDtoRequestLogin;
+import com.groupswd391.fall22.User.DTO.UserDtoResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +23,11 @@ public interface UserService {
 
     Map<String, Object> getUsersByMajor(String major, int page, int size);
 
+    ResponseEntity<?> getUserById(int id);
+
+    boolean deleteUser(int id);
+
     User getUsersByID(int userID);
+
+    UserDtoResponse updateUser(UserDtoRequest userDtoRequest, int id);
 }

@@ -10,7 +10,9 @@ import com.groupswd391.fall22.Role.Role;
 import com.groupswd391.fall22.Role.RoleRepository;
 import com.groupswd391.fall22.User.DTO.UserDtoRequest;
 import com.groupswd391.fall22.User.DTO.UserDtoRequestLogin;
+import com.groupswd391.fall22.User.DTO.UserDtoResponse;
 import com.groupswd391.fall22.User.DTO.UserDtoResponseLogin;
+import com.groupswd391.fall22.exception.ResourceNotFoundException;
 import com.groupswd391.fall22.jwtToken.JwtUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -42,7 +44,8 @@ public class UserServiceImpl implements UserService {
     final UserRoleRepository userRoleRepository;
 
     final JwtUtil jwtUtil;
-    final PasswordEncoder passwordEncoder ;
+    final PasswordEncoder passwordEncoder;
+
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, MajorRepository majorRepository, ModelMapper modelMapper,
                            AuthenticationManager manager, UserRoleRepository userRoleRepository,
                            JwtUtil jwtUtil, PasswordEncoder passwordEncoder) {
@@ -63,7 +66,7 @@ public class UserServiceImpl implements UserService {
         if (optionalUser.isPresent()) {
             return ResponseEntity.badRequest().body("Email is exist");
         }
-        User account = modelMapper.map(userDtoRequest,User.class);
+        User account = modelMapper.map(userDtoRequest, User.class);
         account.setPassword(passwordEncoder.encode(userDtoRequest.getPassword()));
 
         Optional<Major> optionalMajor = majorRepository.findByName(userDtoRequest.getMajor());
@@ -122,8 +125,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> getUsers(String fullname, int page, int size)
-    {
+    public Map<String, Object> getUsers(String fullname, int page, int size) {
         List<User> users;
         Pageable paging = PageRequest.of(page, size);
         Page<User> pageTuts;
@@ -141,15 +143,14 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
-    public Map<String, Object> getUsersByMajor(String major, int page, int size)
-    {
+    public Map<String, Object> getUsersByMajor(String major, int page, int size) {
         List<User> users;
         Pageable paging = PageRequest.of(page, size);
         Page<User> pageTuts;
         if (major == null)
             pageTuts = userRepository.findAll(paging);
         else
-            pageTuts = userRepository.findByMajor(major, paging);
+            pageTuts = userRepository.findUsersByMajor(major, paging);
         users = pageTuts.getContent();
 
         Map<String, Object> response = new HashMap<>();
@@ -164,5 +165,49 @@ public class UserServiceImpl implements UserService {
     public User getUsersByID(int userID) {
         return userRepository.getUserById(userID);
     }
+
+    @Override
+    public UserDtoResponse updateUser(UserDtoRequest userDtoRequest, int id) {
+        User oldUser = userRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Not found User")
+        );
+        Optional<Major> optionalMajor = majorRepository.findByName(userDtoRequest.getMajor());
+        Optional<Role> optionalRole = roleRepository.findByName("USER");
+        modelMapper.map(userDtoRequest, oldUser);
+        Role role = optionalRole.get();
+        Major major = optionalMajor.get();
+        oldUser.setRole(role);
+        oldUser.setMajor(major);
+        oldUser.setStatus(true);
+        oldUser.setFullname(userDtoRequest.getFullname());
+        oldUser.setEmail(userDtoRequest.getEmail());
+        oldUser.setDob(userDtoRequest.getDob());
+        oldUser.setPhone(userDtoRequest.getPhone());
+        oldUser.setImg(userDtoRequest.getImg());
+        User saveUser = userRepository.save(oldUser);
+        return UserDtoResponse.buildFromUser(saveUser);
+    }
+
+    @Override
+    public ResponseEntity<?> getUserById(int id) {
+        try {
+            User user = userRepository.findById(id).orElseThrow(
+                    () -> new NotFoundException("Not found User")
+            );
+            return ResponseEntity.ok(user);
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.badRequest().body("Found Failing");
+        }
+    }
+
+    @Override
+    public boolean deleteUser(int id) {
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new NotFoundException("Not found User")
+        );
+        userRepository.deleteById(id);
+        return true;
+    }
+
 
 }
