@@ -55,7 +55,7 @@ public class ProjectItemController {
     //Get Project Items All List rest api
     @GetMapping("/project-items")
     public List<ProjectItemDTO> getProjectItemsList(
-            @RequestBody int projectID,
+            @RequestParam(name = "projectID") int projectID,
             @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
             @RequestParam(name = "size", required = false, defaultValue = "10") Integer size){
         Pageable pageable = PageRequest.of(page, size);

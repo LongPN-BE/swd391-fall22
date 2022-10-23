@@ -15,6 +15,6 @@ public interface ProjectTypeRepository extends JpaRepository<ProjectType, Intege
     @Query(value = "SELECT * FROM project_type pt WHERE NOT pt.status = 3 AND pt.id = :id", nativeQuery = true)
     ProjectType getProjectTypeByID(@Param("id") int id);
 
-    @Query(value = "SELECT * FROM project_type pt WHERE NOT pt.status = 3 pt.major_ID = :majorID", nativeQuery = true)
-    List<ProjectType> findProjectTypeList(@Param("majorID")int majorID, Pageable pageable);
+    @Query(value = "SELECT * FROM project_type pt WHERE NOT pt.status = 3 AND pt.major_ID = :majorID", nativeQuery = true)
+    List<ProjectType> findProjectTypeList(@Param("majorID")int majorID);
 }

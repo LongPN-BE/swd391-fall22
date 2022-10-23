@@ -46,7 +46,7 @@ public class ProjectTypeController {
     //Get Project Types All List rest api
     @GetMapping("/project-types")
     public List<ProjectTypeDTO> getProjectTypesList(
-            @RequestBody int majorID,
+            @RequestParam(name = "majorID", defaultValue = "1") int majorID,
             @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
             @RequestParam(name = "size", required = false, defaultValue = "10") Integer size){
         Pageable pageable = PageRequest.of(page, size);
