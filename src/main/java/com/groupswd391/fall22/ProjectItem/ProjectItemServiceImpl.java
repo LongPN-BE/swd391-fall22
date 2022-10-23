@@ -18,7 +18,7 @@ public class ProjectItemServiceImpl implements ProjectItemService {
 
     @Override
     public List<ProjectItem> getProjectItems(int projectID, Pageable pageable) {
-        return projectItemRepository.getItemsList(projectID, pageable);
+        return projectItemRepository.getItemsList(projectID);
     }
 
     @Override

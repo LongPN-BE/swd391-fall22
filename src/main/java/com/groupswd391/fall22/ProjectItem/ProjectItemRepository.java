@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ProjectItemRepository extends JpaRepository<ProjectItem, Integer> {
     @Query(value = "SELECT * FROM project_item pi WHERE NOT pi.status = 3 AND pi.project_id = :projectID", nativeQuery = true)
-    List<ProjectItem> getItemsList(@Param("projectID") int projectID, Pageable pageable);
+    List<ProjectItem> getItemsList(@Param("projectID") int projectID);
 
     @Query(value = "SELECT * FROM project_item pi WHERE NOT pi.status = 3 AND pi.id = :id", nativeQuery = true)
     ProjectItem getItem(@Param("id") int id);
