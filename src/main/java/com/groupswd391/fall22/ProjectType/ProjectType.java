@@ -6,22 +6,22 @@ import lombok.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-@CrossOrigin
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "project_type")
-public class ProjectType {
+public class ProjectType implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @ManyToOne( targetEntity = Major.class,cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "major_ID", referencedColumnName = "id")
     private Major major;
 

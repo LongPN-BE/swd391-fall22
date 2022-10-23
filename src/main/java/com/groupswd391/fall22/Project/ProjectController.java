@@ -59,7 +59,7 @@ public class ProjectController {
     //Get Projects All List rest api
     @GetMapping("/projects")
     public List<ProjectDTO> getProjectsList(
-            @RequestBody String dataSearch,
+            @RequestParam(name = "dataSearch", required = false, defaultValue = "") String dataSearch,
             @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
             @RequestParam(name = "size", required = false, defaultValue = "10") Integer size){
         Pageable pageable = PageRequest.of(page, size);

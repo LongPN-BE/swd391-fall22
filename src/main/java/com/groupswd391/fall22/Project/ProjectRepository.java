@@ -10,8 +10,12 @@ import java.util.List;
 
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
-    @Query(value = "SELECT * FROM project p WHERE p.status = 1 AND p.name LIKE %:dataSearch%", nativeQuery = true)
-    List<Project> findProjectList(@Param("dataSearch")String dataSearch, Pageable pageable);
+    @Query(value = "SELECT * " +
+            "FROM project p " +
+            "INNER JOIN project_type pt " +
+            "ON p.project_type_ID = pt.id " +
+            "WHERE p.status = 1 AND pt.status = 1 AND p.name LIKE %:dataSearch% ", nativeQuery = true)
+    List<Project> findProjectList(@Param("dataSearch")String dataSearch);
 
     @Modifying
     @Query(value = "UPDATE project SET status = 3 WHERE id = :id", nativeQuery = true)

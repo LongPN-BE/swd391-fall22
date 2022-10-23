@@ -21,4 +21,5 @@ public class ProjectDTO implements Serializable {
     private String description;
     @NotNull
     private int status;
+
 }

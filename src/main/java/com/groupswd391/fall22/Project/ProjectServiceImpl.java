@@ -72,7 +72,8 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Project> getProjects(String dataSearch, Pageable pageable) {
 //        List<Project> resultList = projectRepository.findAll();
-        return projectRepository.findProjectList(dataSearch, pageable);
+        List<Project> resultList = projectRepository.findProjectList(dataSearch);
+        return resultList;
     }
 
     @Override
