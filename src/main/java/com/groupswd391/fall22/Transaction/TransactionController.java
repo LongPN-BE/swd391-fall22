@@ -56,4 +56,18 @@ public class TransactionController {
     TransactionResponse updateTransaction(@Valid @RequestBody TransactionRequest transactionRequest, @PathVariable int id) {
         return transactionService.updateTransaction(transactionRequest, id);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findWalletByID(@PathVariable int id) {
+        return transactionService.getTransactionById(id);
+    }
+
+    @GetMapping("/order/{orderId}")
+    public ResponseEntity<?> findTransactionByOrder(@PathVariable int orderId) {
+        return transactionService.getTransactionById(orderId);
+    }
+    @GetMapping("/wallet/{walletId}")
+    public ResponseEntity<?> findTransactionByWallet(@PathVariable int walletId) {
+        return transactionService.getTransactionById(walletId);
+    }
 }

@@ -59,12 +59,12 @@ public class WalletController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findWalletByID(@RequestParam int id) {
+    public ResponseEntity<?> findWalletByID(@PathVariable int id) {
         return walletService.getWalletById(id);
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<?> findWalletByUserID(@RequestParam int id) {
-        return walletService.getWalletByUser(id);
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> findWalletByUserID(@PathVariable int userId) {
+        return walletService.getWalletByUser(userId);
     }
 }

@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findUserByID(@RequestParam int id) {
+    public ResponseEntity<?> findUserByID(@PathVariable int id) {
         return userService.getUserById(id);
     }
 
@@ -38,7 +38,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{major}")
+    @GetMapping("/major/{major}")
     public ResponseEntity<Map<String, Object>> getUsersByMajor(@RequestParam(required = false) String major, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
         try {
             Map<String, Object> response = userService.getUsersByMajor(major, page, size);

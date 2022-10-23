@@ -12,6 +12,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
 import org.webjars.NotFoundException;
 
@@ -68,6 +70,42 @@ public class TransactionServiceImpl implements TransactionService {
         oldTransaction.setWallet(wallet);
         Transaction saveTransaction = transactionRepository.save(oldTransaction);
         return TransactionResponse.buildFromTransaction(saveTransaction);
+    }
+
+    @Override
+    public ResponseEntity<?> getTransactionById(int id) {
+        try {
+            Transaction transaction = transactionRepository.findById(id).orElseThrow(
+                    () -> new NotFoundException("Not found Transaction")
+            );
+            return ResponseEntity.ok(transaction);
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.badRequest().body("Found Failing");
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> getTransactionByWallet(int id) {
+            try {
+                Transaction transaction = transactionRepository.getTransactionByWallet(id).orElseThrow(
+                        () -> new NotFoundException("Not found Transaction")
+                );
+                return ResponseEntity.ok(transaction);
+            } catch (BadCredentialsException ex) {
+                return ResponseEntity.badRequest().body("Found Failing");
+            }
+    }
+
+    @Override
+    public ResponseEntity<?> getTransactionByOrder(int id) {
+        try {
+            Transaction transaction = transactionRepository.getTransactionByOrder(id).orElseThrow(
+                    () -> new NotFoundException("Not found Transaction")
+            );
+            return ResponseEntity.ok(transaction);
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.badRequest().body("Found Failing");
+        }
     }
 
     @Override
