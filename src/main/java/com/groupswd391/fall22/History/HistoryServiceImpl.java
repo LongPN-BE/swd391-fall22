@@ -86,16 +86,28 @@ public class HistoryServiceImpl implements HistoryService{
         return true;
     }
 
+//    @Override
+//    public Map<String, Object> getHistory(int userID, int historyTypeID, int page, int size) {
+//        List<History> histories = null;
+//        Pageable paging = PageRequest.of(page, size);
+//        Page<History> pageTuts = null;
+//        pageTuts = historyRepository.findAll(paging);
+//        histories = pageTuts.getContent();
+//
+//        Map<String, Object> response = new HashMap<>();
+//        response.put("histories", histories);
+//        response.put("currentPage", pageTuts.getNumber());
+//        response.put("totalItems", pageTuts.getTotalElements());
+//        response.put("totalPages", pageTuts.getTotalPages());
+//        return response;
+//    }
+
     @Override
-    public Map<String, Object> getHistory(int userID, int historyTypeID, int page, int size) {
+    public Map<String, Object> getHistoryByUser(int userID, int page, int size) {
         List<History> histories = null;
         Pageable paging = PageRequest.of(page, size);
         Page<History> pageTuts = null;
-//        if (userID == 0) {
-//            pageTuts = historyRepository.findAll(paging);
-//        } else
-//            pageTuts = historyRepository.find(userID, paging);
-            pageTuts = historyRepository.findAll(paging);
+        pageTuts = historyRepository.findHistoriesByUser(userID, paging);
         histories = pageTuts.getContent();
 
         Map<String, Object> response = new HashMap<>();

@@ -12,5 +12,9 @@ public interface ApplicationService {
     ApplicationResponse createApplication(ApplicationRequest applicationRequest);
     ApplicationResponse updateApplication(ApplicationRequest applicationRequest, int id);
     boolean deleteApplication(int id);
-    Map<String, Object> getApplicationByUserID(int userID, int page, int size);
+
+    Map<String, Object> getApplications(int page, int size);
+    Map<String, Object> getApplicationByUserID(int id, int page, int size);
+    Map<String, Object> getApplicationByProjectItemID(int id, int page, int size);
+
 }

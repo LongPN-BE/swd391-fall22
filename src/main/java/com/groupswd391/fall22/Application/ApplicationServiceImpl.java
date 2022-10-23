@@ -7,6 +7,7 @@ import com.groupswd391.fall22.ProjectItem.ProjectItem;
 import com.groupswd391.fall22.ProjectItem.ProjectItemRepository;
 import com.groupswd391.fall22.User.User;
 import com.groupswd391.fall22.User.UserRepository;
+import com.groupswd391.fall22.Wallet.Wallet;
 import com.groupswd391.fall22.exception.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -101,15 +102,43 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public Map<String, Object> getApplicationByUserID(int userID, int page, int size) {
-        List<Application> applications;
+    public Map<String, Object> getApplications(int page, int size) {
+        List<Application> applications = null;
         Pageable paging = PageRequest.of(page, size);
-        Page<Application> pageTuts;
-        if (userID == 0) {
-            pageTuts = applicationRepository.findAll(paging);
-        } else
-//            pageTuts = applicationRepository.findByUserID(userID, paging);
-        pageTuts = applicationRepository.findAll(paging);
+        Page<Application> pageTuts = null;
+        pageTuts = applicationRepository.findApplications(paging);
+        applications = pageTuts.getContent();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("applications", applications);
+        response.put("currentPage", pageTuts.getNumber());
+        response.put("totalItems", pageTuts.getTotalElements());
+        response.put("totalPages", pageTuts.getTotalPages());
+        return response;
+    }
+
+    @Override
+    public Map<String, Object> getApplicationByUserID(int id, int page, int size) {
+        List<Application> applications = null;
+        Pageable paging = PageRequest.of(page, size);
+        Page<Application> pageTuts = null;
+        pageTuts = applicationRepository.findByUserID(id, paging);
+        applications = pageTuts.getContent();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("applications", applications);
+        response.put("currentPage", pageTuts.getNumber());
+        response.put("totalItems", pageTuts.getTotalElements());
+        response.put("totalPages", pageTuts.getTotalPages());
+        return response;
+    }
+
+    @Override
+    public Map<String, Object> getApplicationByProjectItemID(int id, int page, int size) {
+        List<Application> applications = null;
+        Pageable paging = PageRequest.of(page, size);
+        Page<Application> pageTuts = null;
+        pageTuts = applicationRepository.findByProjectItem(id, paging);
         applications = pageTuts.getContent();
 
         Map<String, Object> response = new HashMap<>();
