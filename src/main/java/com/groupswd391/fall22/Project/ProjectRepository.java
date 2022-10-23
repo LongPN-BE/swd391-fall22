@@ -21,6 +21,6 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     @Query(value = "UPDATE project SET status = 3 WHERE id = :id", nativeQuery = true)
     void deleteRequestProject(@Param("id")int id);
 
-    @Query(value = "SELECT * FROM project p WHERE NOTE p.status = 3 AND p.id = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM project p WHERE NOT p.status = 3 AND p.id = :id", nativeQuery = true)
     Project getProject(@Param("id") int id);
 }
