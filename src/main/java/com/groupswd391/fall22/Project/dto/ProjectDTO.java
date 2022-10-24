@@ -12,6 +12,8 @@ import java.io.Serializable;
 @Data
 public class ProjectDTO implements Serializable {
     @NotNull
+    private int id;
+    @NotNull
     private int userID;
     @NotNull
     private int projectTypeID;

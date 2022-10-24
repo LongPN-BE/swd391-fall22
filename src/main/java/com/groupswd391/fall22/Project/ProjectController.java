@@ -67,13 +67,14 @@ public class ProjectController {
         List<ProjectDTO> listReturn = new ArrayList<>();
         List<Project> projectList = projectService.getProjects(dataSearch, pageable);
         for (Project project : projectList) {
+            int id = project.getId();
             int userID = project.getUser().getId();
             int projectTypeID = project.getProjectType().getId();
             String name = project.getName();
             String description = project.getDescription();
             int status = project.getStatus();
 
-            listReturn.add(new ProjectDTO(userID, projectTypeID, name, description, status));
+            listReturn.add(new ProjectDTO(id, userID, projectTypeID, name, description, status));
         }
         return listReturn;
     }
@@ -112,7 +113,9 @@ public class ProjectController {
 
     //Update Project rest api
     @PutMapping("/project/{id}")
-    public ResponseEntity<Project> updateProject(@PathVariable("id") int id, @RequestBody Project projectDetails) {
+    public ResponseEntity<Project> updateProject(
+            @PathVariable("id") int id,
+            @RequestBody Project projectDetails) {
         Project project = projectService.getProjectById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(messageProjectNotExist + id));
 
