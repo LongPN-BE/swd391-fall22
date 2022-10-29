@@ -14,8 +14,6 @@ public class ApplicationRequest {
     @NotNull
     private int projectItemID;
     @NotNull
-    private int userID;
-    @NotNull
     private String requirement;
     @NotNull
     private double price;

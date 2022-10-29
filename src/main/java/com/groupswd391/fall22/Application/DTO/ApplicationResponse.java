@@ -13,7 +13,6 @@ import java.sql.Date;
 public class ApplicationResponse {
     private int id;
     private int projectItemID;
-    private int userID;
     private String requirement;
     private double price;
     private Date time;
@@ -23,7 +22,6 @@ public class ApplicationResponse {
         return new ApplicationResponse(
                 application.getId(),
                 application.getProjectItem().getId(),
-                application.getUser().getId(),
                 application.getRequirement(),
                 application.getPrice(),
                 application.getTime(),

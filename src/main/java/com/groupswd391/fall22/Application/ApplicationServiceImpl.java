@@ -44,14 +44,10 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public ApplicationResponse createApplication(ApplicationRequest applicationRequest) {
         Application application = modelMapper.map(applicationRequest,Application.class);
-        User user = userRepository.findById(applicationRequest.getUserID()).orElseThrow(
-                () -> new ResourceNotFoundException("Not found user")
-        );
         ProjectItem projectItem = projectItemRepository.findById(applicationRequest.getProjectItemID()).orElseThrow(
                 ()-> new ResourceNotFoundException("Not found projectItem")
         );
         application.setProjectItem(projectItem);
-        application.setUser(user);
         application.setRequirement(applicationRequest.getRequirement());
         application.setPrice(applicationRequest.getPrice());
         application.setTime(applicationRequest.getTime());
@@ -66,15 +62,11 @@ public class ApplicationServiceImpl implements ApplicationService {
         Application oldApplication= applicationRepository.findById(id).orElseThrow(
                 ()-> new NotFoundException("Not found Application")
         );
-        User user = userRepository.findById(applicationRequest.getUserID()).orElseThrow(
-                () -> new ResourceNotFoundException("Not found user")
-        );
         ProjectItem projectItem = projectItemRepository.findById(applicationRequest.getProjectItemID()).orElseThrow(
                 ()-> new ResourceNotFoundException("Not found projectItem")
         );
         modelMapper.map(applicationRequest,oldApplication);
         oldApplication.setProjectItem(projectItem);
-        oldApplication.setUser(user);
         oldApplication.setRequirement(applicationRequest.getRequirement());
         oldApplication.setPrice(applicationRequest.getPrice());
         oldApplication.setTime(applicationRequest.getTime());
