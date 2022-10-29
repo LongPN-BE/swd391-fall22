@@ -14,20 +14,20 @@ public class ApplicationResponse {
     private int id;
     private int projectItemID;
     private int userID;
-    private int userRequestID;
     private String requirement;
     private double price;
     private Date time;
+    private int status;
 
     public static ApplicationResponse buildFromApplication(Application application) {
         return new ApplicationResponse(
                 application.getId(),
                 application.getProjectItem().getId(),
                 application.getUser().getId(),
-                application.getUserRequest().getId(),
                 application.getRequirement(),
                 application.getPrice(),
-                application.getTime()
+                application.getTime(),
+                application.getStatus()
         );
     }
 }

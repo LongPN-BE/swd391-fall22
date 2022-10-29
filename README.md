@@ -1,5 +1,5 @@
 Author: Long PN<br>
-Co: Như LQ, Phiên TQ<br>
+Co: Như LQ<br>
 ---------------------------------------------
 
 Project back-end:<br>

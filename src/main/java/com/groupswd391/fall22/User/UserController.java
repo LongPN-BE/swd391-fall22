@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @PostMapping("/loginfirebase/{token}")
-    ResponseEntity<?> loginFireBase(@RequestParam String token) {
+    ResponseEntity<?> loginFireBase(@PathVariable String token) {
         return userService.LoginFireBase(token);
     }
 

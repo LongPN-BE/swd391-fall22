@@ -16,11 +16,16 @@ public class ApplicationRequest {
     @NotNull
     private int userID;
     @NotNull
-    private int userRequestID;
-    @NotNull
     private String requirement;
     @NotNull
     private double price;
-    @NotNull
-    private Date time = (Date) new java.util.Date();
+    private Date time;
+    private int status;
+
+    public Date getTime() {
+        if(this.time == null){
+            this.time = (Date) new java.util.Date();
+        }
+        return time;
+    }
 }

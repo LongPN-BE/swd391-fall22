@@ -47,19 +47,15 @@ public class ApplicationServiceImpl implements ApplicationService {
         User user = userRepository.findById(applicationRequest.getUserID()).orElseThrow(
                 () -> new ResourceNotFoundException("Not found user")
         );
-        User userRequest = userRepository.findById(applicationRequest.getUserRequestID()).orElseThrow(
-                () -> new ResourceNotFoundException("Not found user request")
-        );
         ProjectItem projectItem = projectItemRepository.findById(applicationRequest.getProjectItemID()).orElseThrow(
                 ()-> new ResourceNotFoundException("Not found projectItem")
         );
         application.setProjectItem(projectItem);
         application.setUser(user);
-        application.setUserRequest(userRequest);
         application.setRequirement(applicationRequest.getRequirement());
         application.setPrice(applicationRequest.getPrice());
         application.setTime(applicationRequest.getTime());
-
+        application.setStatus(applicationRequest.getStatus());
         Application saveApplication= applicationRepository.save(application);
 
         return ApplicationResponse.buildFromApplication(saveApplication);
@@ -73,20 +69,16 @@ public class ApplicationServiceImpl implements ApplicationService {
         User user = userRepository.findById(applicationRequest.getUserID()).orElseThrow(
                 () -> new ResourceNotFoundException("Not found user")
         );
-        User userRequest = userRepository.findById(applicationRequest.getUserRequestID()).orElseThrow(
-                () -> new ResourceNotFoundException("Not found user request")
-        );
         ProjectItem projectItem = projectItemRepository.findById(applicationRequest.getProjectItemID()).orElseThrow(
                 ()-> new ResourceNotFoundException("Not found projectItem")
         );
         modelMapper.map(applicationRequest,oldApplication);
         oldApplication.setProjectItem(projectItem);
         oldApplication.setUser(user);
-        oldApplication.setUserRequest(userRequest);
         oldApplication.setRequirement(applicationRequest.getRequirement());
         oldApplication.setPrice(applicationRequest.getPrice());
         oldApplication.setTime(applicationRequest.getTime());
-
+        oldApplication.setStatus(applicationRequest.getStatus());
         Application saveApplication= applicationRepository.save(oldApplication);
 
         return ApplicationResponse.buildFromApplication(saveApplication);
