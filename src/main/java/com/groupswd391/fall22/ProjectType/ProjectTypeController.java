@@ -46,13 +46,32 @@ public class ProjectTypeController {
     //Get Project Types All List rest api
     @GetMapping("/project-types")
     public List<ProjectTypeDTO> getProjectTypesList(
-            @RequestParam(name = "majorID", defaultValue = "1") int majorID,
             @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
             @RequestParam(name = "size", required = false, defaultValue = "10") Integer size){
         Pageable pageable = PageRequest.of(page, size);
 
         List<ProjectTypeDTO> listReturn = new ArrayList<>();
-        List<ProjectType> projectTypeList = projectTypeService.getProjectTypes(majorID, pageable);
+        List<ProjectType> projectTypeList = projectTypeService.getProjectTypes(pageable);
+        for (ProjectType projectType : projectTypeList) {
+            String name = projectType.getName();
+            String description = projectType.getDescription();
+            int majorID = projectType.getMajor().getId();
+
+            listReturn.add(new ProjectTypeDTO(majorID, name, description));
+        }
+        return listReturn;
+    }
+
+    //Get Project Types List By Major ID rest api
+    @GetMapping("/project-types/{majorID}")
+    public List<ProjectTypeDTO> getProjectTypesListByMajorID(
+            @PathVariable("majorID") int majorID,
+            @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(name = "size", required = false, defaultValue = "10") Integer size){
+        Pageable pageable = PageRequest.of(page, size);
+
+        List<ProjectTypeDTO> listReturn = new ArrayList<>();
+        List<ProjectType> projectTypeList = projectTypeService.getProjectTypesByMajorID(majorID, pageable);
         for (ProjectType projectType : projectTypeList) {
             String name = projectType.getName();
             String description = projectType.getDescription();

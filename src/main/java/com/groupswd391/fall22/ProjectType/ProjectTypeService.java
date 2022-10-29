@@ -12,7 +12,9 @@ import java.util.Optional;
 public interface ProjectTypeService {
     Optional<ProjectType> getProjectTypeByID(int id);
 
-    List<ProjectType> getProjectTypes(int majorID, Pageable pageable);
+    List<ProjectType> getProjectTypes(Pageable pageable);
+
+    List<ProjectType> getProjectTypesByMajorID(int majorID, Pageable pageable);
 
     ProjectType addProjectType(ProjectType projectType);
 
