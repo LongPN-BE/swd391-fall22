@@ -82,6 +82,12 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<Project> getProjectsByUserId(int userID, Pageable pageable) {
+        List<Project> resultList = projectRepository.getProjectByUserID(userID);
+        return resultList;
+    }
+
+    @Override
     public Optional<Project> getProjectById(int id) {
         return Optional.ofNullable(projectRepository.getProject(id));
     }

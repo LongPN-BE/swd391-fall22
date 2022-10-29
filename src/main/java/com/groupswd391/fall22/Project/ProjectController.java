@@ -67,13 +67,35 @@ public class ProjectController {
         List<ProjectDTO> listReturn = new ArrayList<>();
         List<Project> projectList = projectService.getProjects(dataSearch, pageable);
         for (Project project : projectList) {
+            int id = project.getId();
             int userID = project.getUser().getId();
             int projectTypeID = project.getProjectType().getId();
             String name = project.getName();
             String description = project.getDescription();
             int status = project.getStatus();
 
-            listReturn.add(new ProjectDTO(userID, projectTypeID, name, description, status));
+            listReturn.add(new ProjectDTO(id, userID, projectTypeID, name, description, status));
+        }
+        return listReturn;
+    }
+    //Get Project By userID rest api
+    @GetMapping("/projects/user")
+    public List<ProjectDTO> getProjectsByUserId(
+            @RequestParam(name = "userID", required = false, defaultValue = "") int userID,
+            @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(name = "size", required = false, defaultValue = "10") Integer size){
+        Pageable pageable = PageRequest.of(page, size);
+
+        List<ProjectDTO> listReturn = new ArrayList<>();
+        List<Project> projectList = projectService.getProjectsByUserId(userID, pageable);
+        for (Project project : projectList) {
+            int id = project.getId();
+            int projectTypeID = project.getProjectType().getId();
+            String name = project.getName();
+            String description = project.getDescription();
+            int status = project.getStatus();
+
+            listReturn.add(new ProjectDTO(id, userID, projectTypeID, name, description, status));
         }
         return listReturn;
     }
@@ -112,7 +134,9 @@ public class ProjectController {
 
     //Update Project rest api
     @PutMapping("/project/{id}")
-    public ResponseEntity<Project> updateProject(@PathVariable("id") int id, @RequestBody Project projectDetails) {
+    public ResponseEntity<Project> updateProject(
+            @PathVariable("id") int id,
+            @RequestBody Project projectDetails) {
         Project project = projectService.getProjectById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(messageProjectNotExist + id));
 

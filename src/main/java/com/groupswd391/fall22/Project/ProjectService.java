@@ -22,6 +22,8 @@ public interface ProjectService {
 
     <S extends Project> S saveProject(S project);
 
+    List<Project> getProjectsByUserId(int userID, Pageable pageable);
+
     Optional<Project> getProjectById(int id);
 
     void deleteProject(Project project);

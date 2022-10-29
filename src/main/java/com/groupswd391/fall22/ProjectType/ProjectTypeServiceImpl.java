@@ -20,7 +20,12 @@ public class ProjectTypeServiceImpl implements ProjectTypeService{
     }
 
     @Override
-    public List<ProjectType> getProjectTypes(int majorID, Pageable pageable) {
+    public List<ProjectType> getProjectTypes(Pageable pageable) {
+        return projectTypeRepository.findAll();
+    }
+
+    @Override
+    public List<ProjectType> getProjectTypesByMajorID(int majorID, Pageable pageable) {
         return projectTypeRepository.findProjectTypeList(majorID);
     }
 
