@@ -25,4 +25,6 @@ public class ProjectItemDTO implements Serializable {
     private double maxPrice;
     @NotNull
     private String requirement;
+    @NotNull
+    private int status;
 }

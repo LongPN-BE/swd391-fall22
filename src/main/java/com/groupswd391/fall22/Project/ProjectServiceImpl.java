@@ -72,7 +72,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Project> getProjects(String dataSearch, Pageable pageable) {
 //        List<Project> resultList = projectRepository.findAll();
-        List<Project> resultList = projectRepository.findProjectList(dataSearch);
+        List<Project> resultList = projectRepository.getProjectsList(dataSearch);
         return resultList;
     }
 
@@ -83,7 +83,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<Project> getProjectsByUserId(int userID, Pageable pageable) {
-        List<Project> resultList = projectRepository.getProjectByUserID(userID);
+        List<Project> resultList = projectRepository.getProjectsByUserID(userID);
         return resultList;
     }
 

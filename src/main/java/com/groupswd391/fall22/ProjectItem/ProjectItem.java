@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,28 +23,28 @@ public class ProjectItem implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "project_ID", referencedColumnName = "id")
-    private Project project;
+    @Column(name = "applied_num")
+    private Integer appliedNum;
 
-    @Column(name = "minPrice")
+    @Column(name = "max_price")
+    private double maxPrice;
+
+    @Column(name = "min_price")
     private double minPrice;
 
-    @Column(name = "maxPrice")
-    private double maxPrice;
+    @Column(name = "needed_num")
+    private Integer neededNum;
 
     @Column(name = "requirement")
     private String requirement;
 
-    @Column(name = "neededNum")
-    private Integer neededNum;
-
-    @Column(name = "soldNum")
+    @Column(name = "sold_num")
     private Integer soldNum;
-
-    @Column(name = "appliedNum")
-    private Integer appliedNum;
 
     @Column(name = "status")
     private int status;
+
+    @ManyToOne
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
+    private Project project;
 }
