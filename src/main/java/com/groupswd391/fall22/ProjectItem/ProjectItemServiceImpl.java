@@ -6,19 +6,22 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Service
 public class ProjectItemServiceImpl implements ProjectItemService {
     @Autowired
     private ProjectItemRepository projectItemRepository;
 
     @Override
     public List<ProjectItem> getProjectItems(int projectID, Pageable pageable) {
-        return projectItemRepository.getItemsList(projectID);
+        List<ProjectItem> resultList = projectItemRepository.getProjectItemsList(projectID);
+        return resultList;
     }
 
     @Override
@@ -55,13 +58,12 @@ public class ProjectItemServiceImpl implements ProjectItemService {
     }
 
     @Override
-    public ProjectItem deleteProjectItem(ProjectItem projectItem) {
+    public void deleteProjectItem(ProjectItem projectItem) {
         ProjectItem existingProjectItem = projectItemRepository.findById(projectItem.getId()).orElse(null);
         if (existingProjectItem != null) {
             existingProjectItem.setStatus(3);
-            return projectItemRepository.save(existingProjectItem);
+            projectItemRepository.save(existingProjectItem);
         }
-        return null;
     }
 
     @Override

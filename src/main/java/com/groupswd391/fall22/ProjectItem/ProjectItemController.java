@@ -48,7 +48,9 @@ public class ProjectItemController {
 
     private final String messageProjectItemNotExist = "There is no project item exist with this id: ";
     private final String messageProjectNotExist = "There is no project exist with this id: ";
-    ProjectItemService projectItemService;
+
+    @Autowired
+    private ProjectItemService projectItemService;
     @Autowired
     private ProjectService projectService;
 
@@ -70,8 +72,13 @@ public class ProjectItemController {
             double minPrice = projectItem.getMinPrice();
             double maxPrice = projectItem.getMaxPrice();
             String requirement = projectItem.getRequirement();
+            int status = projectItem.getStatus();
 
+<<<<<<< HEAD
             listReturn.add(new ProjectItemDTO(id,projectID, neededNum, soldNum, appliedNum, minPrice, maxPrice, requirement));
+=======
+            listReturn.add(new ProjectItemDTO(projectID, neededNum, soldNum, appliedNum, minPrice, maxPrice, requirement, status));
+>>>>>>> ec677de7e999276a55f149f23de54e06b706dd3b
         }
         return listReturn;
     }

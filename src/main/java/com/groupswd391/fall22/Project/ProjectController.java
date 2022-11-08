@@ -49,6 +49,7 @@ public class ProjectController {
 
     private final String messageProjectNotExist = "There is no project exist with this id: ";
     private final String messageProjectTypeNotExist = "There is no project type exist with this id: ";
+
     @Autowired
     private ProjectService projectService;
     @Autowired
@@ -78,10 +79,11 @@ public class ProjectController {
         }
         return listReturn;
     }
+
     //Get Project By userID rest api
     @GetMapping("/projects/user")
     public List<ProjectDTO> getProjectsByUserId(
-            @RequestParam(name = "userID", required = false, defaultValue = "") int userID,
+            @RequestParam(name = "userID") int userID,
             @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
             @RequestParam(name = "size", required = false, defaultValue = "10") Integer size){
         Pageable pageable = PageRequest.of(page, size);
