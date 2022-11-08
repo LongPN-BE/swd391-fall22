@@ -11,6 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 public class ProjectItemDTO implements Serializable {
+    private int id;
     @NotNull
     private int projectID;
     @NotNull
