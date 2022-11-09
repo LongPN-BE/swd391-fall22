@@ -1,4 +1,4 @@
-package com.groupswd391.fall22.Project.dto;
+package com.groupswd391.fall22.project.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

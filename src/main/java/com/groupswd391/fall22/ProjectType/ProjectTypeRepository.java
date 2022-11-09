@@ -1,7 +1,5 @@
-package com.groupswd391.fall22.ProjectType;
+package com.groupswd391.fall22.projectType;
 
-import com.groupswd391.fall22.Project.Project;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,9 +1,8 @@
-package com.groupswd391.fall22.ProjectType;
+package com.groupswd391.fall22.projectType;
 
 
 import com.groupswd391.fall22.Major.Major;
 import lombok.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.io.Serializable;

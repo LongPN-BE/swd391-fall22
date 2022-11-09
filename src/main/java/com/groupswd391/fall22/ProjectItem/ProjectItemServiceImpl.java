@@ -1,4 +1,4 @@
-package com.groupswd391.fall22.ProjectItem;
+package com.groupswd391.fall22.projectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

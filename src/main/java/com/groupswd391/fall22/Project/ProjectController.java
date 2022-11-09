@@ -1,8 +1,8 @@
-package com.groupswd391.fall22.Project;
+package com.groupswd391.fall22.project;
 
-import com.groupswd391.fall22.Project.dto.ProjectDTO;
-import com.groupswd391.fall22.ProjectType.ProjectType;
-import com.groupswd391.fall22.ProjectType.ProjectTypeService;
+import com.groupswd391.fall22.project.dto.ProjectDTO;
+import com.groupswd391.fall22.projectType.ProjectType;
+import com.groupswd391.fall22.projectType.ProjectTypeService;
 import com.groupswd391.fall22.User.User;
 import com.groupswd391.fall22.User.UserService;
 import com.groupswd391.fall22.exception.ResourceNotFoundException;
@@ -123,7 +123,9 @@ public class ProjectController {
     @PostMapping("/project")
     public Project addProject(@RequestBody ProjectDTO projectDTO) {
         Project project = new Project();
-        BeanUtils.copyProperties(projectDTO, project);
+        project.setName(projectDTO.getName());
+        project.setDescription(projectDTO.getDescription());
+        project.setStatus(projectDTO.getStatus());
 
         ProjectType projectType = projectTypeService.getProjectTypeByID(projectDTO.getProjectTypeID())
                 .orElseThrow(() -> new ResourceNotFoundException(messageProjectTypeNotExist + projectDTO.getProjectTypeID()));

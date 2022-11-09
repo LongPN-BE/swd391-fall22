@@ -1,4 +1,4 @@
-package com.groupswd391.fall22.Project;
+package com.groupswd391.fall22.project;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,4 +25,7 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
     @Query(value = "SELECT * FROM project p WHERE NOT p.status = 3 AND p.id = :id", nativeQuery = true)
     Project getProject(@Param("id") int id);
+
+    @Query(value = "SELECT MAX(p.id) FROM project p", nativeQuery = true)
+    int getLastIDProject();
 }

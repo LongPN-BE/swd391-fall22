@@ -1,18 +1,13 @@
-package com.groupswd391.fall22.ProjectType;
+package com.groupswd391.fall22.projectType;
 
 import com.groupswd391.fall22.Major.Major;
 import com.groupswd391.fall22.Major.MajorService;
-import com.groupswd391.fall22.Project.Project;
-import com.groupswd391.fall22.Project.dto.ProjectDTO;
-import com.groupswd391.fall22.ProjectItem.ProjectItem;
-import com.groupswd391.fall22.ProjectItem.dto.ProjectItemDTO;
-import com.groupswd391.fall22.ProjectType.dto.ProjectTypeDTO;
+import com.groupswd391.fall22.projectType.dto.ProjectTypeDTO;
 import com.groupswd391.fall22.exception.ResourceNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

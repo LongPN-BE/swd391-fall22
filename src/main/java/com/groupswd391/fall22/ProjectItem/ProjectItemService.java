@@ -1,4 +1,4 @@
-package com.groupswd391.fall22.ProjectItem;
+package com.groupswd391.fall22.projectItem;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

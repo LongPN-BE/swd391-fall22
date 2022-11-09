@@ -1,8 +1,8 @@
-package com.groupswd391.fall22.ProjectItem;
+package com.groupswd391.fall22.projectItem;
 
-import com.groupswd391.fall22.Project.Project;
-import com.groupswd391.fall22.Project.ProjectService;
-import com.groupswd391.fall22.ProjectItem.dto.ProjectItemDTO;
+import com.groupswd391.fall22.project.Project;
+import com.groupswd391.fall22.project.ProjectService;
+import com.groupswd391.fall22.projectItem.dto.ProjectItemDTO;
 import com.groupswd391.fall22.exception.ResourceNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

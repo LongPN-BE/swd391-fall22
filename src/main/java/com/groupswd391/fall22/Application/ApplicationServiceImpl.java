@@ -3,11 +3,10 @@ package com.groupswd391.fall22.Application;
 
 import com.groupswd391.fall22.Application.DTO.ApplicationRequest;
 import com.groupswd391.fall22.Application.DTO.ApplicationResponse;
-import com.groupswd391.fall22.ProjectItem.ProjectItem;
-import com.groupswd391.fall22.ProjectItem.ProjectItemRepository;
+import com.groupswd391.fall22.projectItem.ProjectItem;
+import com.groupswd391.fall22.projectItem.ProjectItemRepository;
 import com.groupswd391.fall22.User.User;
 import com.groupswd391.fall22.User.UserRepository;
-import com.groupswd391.fall22.Wallet.Wallet;
 import com.groupswd391.fall22.exception.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
