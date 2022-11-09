@@ -142,11 +142,14 @@ public class ProjectController {
     @PutMapping("/project/{id}")
     public ResponseEntity<Project> updateProject(
             @PathVariable("id") int id,
-            @RequestBody Project projectDetails) {
+            @RequestBody ProjectDTO projectDetails) {
         Project project = projectService.getProjectById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(messageProjectNotExist + id));
 
-        project.setProjectType(projectDetails.getProjectType());
+        ProjectType projectType = projectTypeService.getProjectTypeByID(projectDetails.getProjectTypeID())
+                .orElseThrow(() -> new ResourceNotFoundException(messageProjectTypeNotExist + projectDetails.getProjectTypeID()));
+        project.setProjectType(projectType);
+
         project.setName(projectDetails.getName());
         project.setDescription(projectDetails.getDescription());
         project.setStatus(projectDetails.getStatus());
