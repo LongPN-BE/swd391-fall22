@@ -48,11 +48,12 @@ public class ProjectTypeController {
         List<ProjectTypeDTO> listReturn = new ArrayList<>();
         List<ProjectType> projectTypeList = projectTypeService.getProjectTypes(pageable);
         for (ProjectType projectType : projectTypeList) {
+            Integer id = projectType.getId();
             String name = projectType.getName();
             String description = projectType.getDescription();
             int majorID = projectType.getMajor().getId();
 
-            listReturn.add(new ProjectTypeDTO(majorID, name, description));
+            listReturn.add(new ProjectTypeDTO(id,majorID, name, description));
         }
         return listReturn;
     }
@@ -68,10 +69,11 @@ public class ProjectTypeController {
         List<ProjectTypeDTO> listReturn = new ArrayList<>();
         List<ProjectType> projectTypeList = projectTypeService.getProjectTypesByMajorID(majorID, pageable);
         for (ProjectType projectType : projectTypeList) {
+            Integer id = projectType.getId();
             String name = projectType.getName();
             String description = projectType.getDescription();
 
-            listReturn.add(new ProjectTypeDTO(majorID, name, description));
+            listReturn.add(new ProjectTypeDTO(id,majorID, name, description));
         }
         return listReturn;
     }

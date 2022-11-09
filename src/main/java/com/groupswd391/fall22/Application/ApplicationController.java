@@ -73,7 +73,7 @@ public class ApplicationController {
             description = "Tạo 1 Application mới "
     )
     @PostMapping()
-    ApplicationResponse addProduct(@Valid @RequestBody ApplicationRequest applicationRequest) {
+    ApplicationResponse addApplication(@Valid @RequestBody ApplicationRequest applicationRequest) {
         return applicationService.createApplication(applicationRequest);
     }
 

@@ -65,6 +65,7 @@ public class ProjectItemController {
         List<ProjectItemDTO> listReturn = new ArrayList<>();
         List<ProjectItem> projectItemList = projectItemService.getProjectItems(projectID, pageable);
         for (ProjectItem projectItem : projectItemList) {
+            int id = projectItem.getId();
             Integer neededNum = projectItem.getNeededNum();
             Integer soldNum = projectItem.getSoldNum();
             Integer appliedNum = projectItem.getAppliedNum();
@@ -72,8 +73,7 @@ public class ProjectItemController {
             double maxPrice = projectItem.getMaxPrice();
             String requirement = projectItem.getRequirement();
             int status = projectItem.getStatus();
-
-            listReturn.add(new ProjectItemDTO(projectID, neededNum, soldNum, appliedNum, minPrice, maxPrice, requirement, status));
+            listReturn.add(new ProjectItemDTO(id,projectID, neededNum, soldNum, appliedNum, minPrice, maxPrice, requirement,status));
         }
         return listReturn;
     }

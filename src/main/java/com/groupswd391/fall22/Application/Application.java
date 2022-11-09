@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.sql.Date;
 
 
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,7 +21,7 @@ public class Application {
     private int id;
 
     @ManyToOne(targetEntity = ProjectItem.class)
-    @JoinColumn(name = "projectItem_ID", referencedColumnName = "id")
+    @JoinColumn(name = "project_item_id", referencedColumnName = "id")
     private ProjectItem projectItem;
 
     @ManyToOne(targetEntity = User.class)
