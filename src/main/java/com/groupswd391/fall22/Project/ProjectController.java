@@ -1,8 +1,10 @@
 package com.groupswd391.fall22.project;
 
 import com.groupswd391.fall22.project.dto.ProjectDTO;
-import com.groupswd391.fall22.projectType.ProjectType;
-import com.groupswd391.fall22.projectType.ProjectTypeService;
+import com.groupswd391.fall22.project.entity.Project;
+import com.groupswd391.fall22.project.service.ProjectService;
+import com.groupswd391.fall22.projectType.entity.ProjectType;
+import com.groupswd391.fall22.projectType.service.ProjectTypeService;
 import com.groupswd391.fall22.User.User;
 import com.groupswd391.fall22.User.UserService;
 import com.groupswd391.fall22.exception.ResourceNotFoundException;

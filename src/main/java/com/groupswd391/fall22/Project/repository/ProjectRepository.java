@@ -1,5 +1,6 @@
-package com.groupswd391.fall22.project;
+package com.groupswd391.fall22.project.repository;
 
+import com.groupswd391.fall22.project.entity.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

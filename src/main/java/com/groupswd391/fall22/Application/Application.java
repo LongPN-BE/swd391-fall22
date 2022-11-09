@@ -1,6 +1,6 @@
 package com.groupswd391.fall22.Application;
 
-import com.groupswd391.fall22.projectItem.ProjectItem;
+import com.groupswd391.fall22.projectItem.entity.ProjectItem;
 import com.groupswd391.fall22.User.User;
 import lombok.*;
 

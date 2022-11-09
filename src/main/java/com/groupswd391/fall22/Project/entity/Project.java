@@ -1,7 +1,7 @@
-package com.groupswd391.fall22.project;
+package com.groupswd391.fall22.project.entity;
 
 
-import com.groupswd391.fall22.projectType.ProjectType;
+import com.groupswd391.fall22.projectType.entity.ProjectType;
 import com.groupswd391.fall22.User.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

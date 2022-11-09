@@ -1,5 +1,8 @@
-package com.groupswd391.fall22.project;
+package com.groupswd391.fall22.project.service.imp;
 
+import com.groupswd391.fall22.project.entity.Project;
+import com.groupswd391.fall22.project.repository.ProjectRepository;
+import com.groupswd391.fall22.project.service.ProjectService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.groupswd391.fall22.OrderDetail;
 
 
-import com.groupswd391.fall22.projectItem.ProjectItem;
+import com.groupswd391.fall22.projectItem.entity.ProjectItem;
 import com.groupswd391.fall22.Order.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,9 +1,11 @@
 package com.groupswd391.fall22.projectItem;
 
-import com.groupswd391.fall22.project.Project;
-import com.groupswd391.fall22.project.ProjectService;
+import com.groupswd391.fall22.project.entity.Project;
+import com.groupswd391.fall22.project.service.ProjectService;
 import com.groupswd391.fall22.projectItem.dto.ProjectItemDTO;
 import com.groupswd391.fall22.exception.ResourceNotFoundException;
+import com.groupswd391.fall22.projectItem.entity.ProjectItem;
+import com.groupswd391.fall22.projectItem.service.ProjectItemService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

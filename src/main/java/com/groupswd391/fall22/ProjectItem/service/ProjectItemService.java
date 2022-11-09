@@ -1,5 +1,6 @@
-package com.groupswd391.fall22.projectItem;
+package com.groupswd391.fall22.projectItem.service;
 
+import com.groupswd391.fall22.projectItem.entity.ProjectItem;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

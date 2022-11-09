@@ -3,8 +3,8 @@ package com.groupswd391.fall22.Application;
 
 import com.groupswd391.fall22.Application.DTO.ApplicationRequest;
 import com.groupswd391.fall22.Application.DTO.ApplicationResponse;
-import com.groupswd391.fall22.projectItem.ProjectItem;
-import com.groupswd391.fall22.projectItem.ProjectItemRepository;
+import com.groupswd391.fall22.projectItem.entity.ProjectItem;
+import com.groupswd391.fall22.projectItem.repository.ProjectItemRepository;
 import com.groupswd391.fall22.User.User;
 import com.groupswd391.fall22.User.UserRepository;
 import com.groupswd391.fall22.exception.ResourceNotFoundException;

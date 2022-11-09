@@ -1,5 +1,8 @@
-package com.groupswd391.fall22.projectType;
+package com.groupswd391.fall22.projectType.service.imp;
 
+import com.groupswd391.fall22.projectType.entity.ProjectType;
+import com.groupswd391.fall22.projectType.repository.ProjectTypeRepository;
+import com.groupswd391.fall22.projectType.service.ProjectTypeService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -7,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProjectTypeServiceImpl implements ProjectTypeService{
+public class ProjectTypeServiceImpl implements ProjectTypeService {
     private final ProjectTypeRepository projectTypeRepository;
 
     public ProjectTypeServiceImpl(ProjectTypeRepository projectTypeRepository) {

@@ -4,6 +4,8 @@ import com.groupswd391.fall22.Major.Major;
 import com.groupswd391.fall22.Major.MajorService;
 import com.groupswd391.fall22.projectType.dto.ProjectTypeDTO;
 import com.groupswd391.fall22.exception.ResourceNotFoundException;
+import com.groupswd391.fall22.projectType.entity.ProjectType;
+import com.groupswd391.fall22.projectType.service.ProjectTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

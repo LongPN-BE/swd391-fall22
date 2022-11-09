@@ -1,5 +1,6 @@
-package com.groupswd391.fall22.projectItem;
+package com.groupswd391.fall22.projectItem.repository;
 
+import com.groupswd391.fall22.projectItem.entity.ProjectItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

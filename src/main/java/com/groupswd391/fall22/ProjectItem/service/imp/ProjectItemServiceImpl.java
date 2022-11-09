@@ -1,5 +1,8 @@
-package com.groupswd391.fall22.projectItem;
+package com.groupswd391.fall22.projectItem.service.imp;
 
+import com.groupswd391.fall22.projectItem.entity.ProjectItem;
+import com.groupswd391.fall22.projectItem.repository.ProjectItemRepository;
+import com.groupswd391.fall22.projectItem.service.ProjectItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

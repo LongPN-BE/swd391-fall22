@@ -1,4 +1,4 @@
-package com.groupswd391.fall22.projectType;
+package com.groupswd391.fall22.projectType.entity;
 
 
 import com.groupswd391.fall22.Major.Major;
